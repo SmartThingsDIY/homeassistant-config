@@ -4,12 +4,15 @@ Here's my [Home Assistant](https://home-assistant.io/) configuration. I have ins
 
 I regularly update my configuration files. If you like anything here, Be sure to :star2: my repo!
 
+## Automations I couldn't live without
+
+* WIP
 ## Some of the devices and services that I use with HA
 
 * Lights and Switches
   * WIP
 * Security
-  * WIP
+  * Yii Camera
 * Voice Interaction
   * WIP
 * Notifications:
@@ -31,3 +34,7 @@ Here are some screenshots (please note that these may not be the most updated im
 <img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_3.png?raw=true" alt="Home Assistant dashboard" />
 
 <img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_4.png?raw=true" alt="Home Assistant dashboard" />
+
+<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_5.png?raw=true" alt="Home Assistant dashboard" />
+
+<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_6.png?raw=true" alt="Home Assistant dashboard" />
