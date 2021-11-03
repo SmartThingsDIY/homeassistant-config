@@ -5,17 +5,18 @@ Here's my [Home Assistant](https://home-assistant.io/) configuration. I have ins
 I regularly update my configuration files. If you like anything here, Be sure to :star2: my repo!
 
 ## Some of the devices and services that I use with HA
-    * Lights and Switches
-        * WIP
-    * Security
-        * WIP
-    * Voice Interaction
-        * WIP
-    * Notifications:
-        * WIP
-    * Weather and Climate related
-        * WIP
-        * WIP
+
+* Lights and Switches
+  * WIP
+* Security
+  * WIP
+* Voice Interaction
+  * WIP
+* Notifications:
+  * WIP
+* Weather and Climate related
+  * WIP
+  * WIP
 
 ## My Home Assistant dashboard
 
