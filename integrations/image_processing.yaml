@@ -1,5 +1,5 @@
 - platform: doods
-  url: "http://192.168.68.113:8080"
+  url: "http://XX.XX.XX.XX:8080"
   detector: default
   scan_interval: 10000
   confidence: 60
