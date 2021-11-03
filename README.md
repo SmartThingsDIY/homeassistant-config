@@ -9,15 +9,24 @@ I regularly update my configuration files. If you like anything here, Be sure to
 * WIP
 ## Some of the devices and services that I use with HA
 
-* Lights and Switches
+### Lights and Switches
   * WIP
-* Security
-  * Yii Camera
-* Voice Interaction
+### Cameras
+[Yi 1080](https://amzn.to/3w9Ppax) Wireless IP Security Camera.
+
+I like using this camera because of how easy it is to flash with a custom firmware, so all images stays local within my HA instance and nothing goes to the cloud.
+
+I have it set up to automatically take pictures when movement is detected and send me notifications on my iPhone and Apple watch. Here's a [link to watch](https://www.youtube.com/watch?v=GCHYBxnZK-E) a step by step video on how I set it up.
+
+<img width="250" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/security_camera.png?raw=true">
+
+### Plugs
   * WIP
-* Notifications:
+### Voice Interaction
   * WIP
-* Weather and Climate related
+### Notifications:
+  * WIP
+### Weather and Climate related
   * WIP
   * WIP
 
@@ -31,10 +40,10 @@ Here are some screenshots (please note that these may not be the most updated im
 
 <img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_2.png?raw=true" alt="Home Assistant dashboard" />
 
-<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_3.png?raw=true" alt="Home Assistant dashboard" />
+<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_5.png?raw=true" alt="Home Assistant dashboard" />
 
 <img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_4.png?raw=true" alt="Home Assistant dashboard" />
 
-<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_5.png?raw=true" alt="Home Assistant dashboard" />
-
 <img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_6.png?raw=true" alt="Home Assistant dashboard" />
+
+<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_3.png?raw=true" alt="Home Assistant dashboard" />
