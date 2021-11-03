@@ -25,6 +25,7 @@ I use 2 brands of ZigBee Motion Sensor to detect movement and trigger automation
   * These [SONOFF SNZB-03](https://amzn.to/31hJCEi). They are small and discreet but I found them to be fragile and unreliable.
   * These [Hacbop ZigBee PIR](https://amzn.to/3q2V8xV) that are a little bit more expensive than the [SONOFF SNZB-03](https://amzn.to/31hJCEi) but they are more reliable and have a longer battery life.
 
+I also use the [SONOFF SNZB-04](https://amzn.to/31tMnTd) Door & Window Sensor to detect when a door or window is opened in order to send notifications and/or trigger automation
 ### Plugs
   * WIP
 ### Buttons
