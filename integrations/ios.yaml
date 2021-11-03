@@ -7,14 +7,12 @@ push:
           title: "Away Mode"
         - identifier: "SKIP_AWAY_MODE"
           title: "Skip"
-
-
-# actions:
-#   - name: Fred
-#     background_color: "#000000"
-#     label:
-#       text: "Hello, World"
-#       color: "#ff0000"
-#     icon:
-#       icon: earth
-#       color: "#ffffff"
+actions:
+  - name: toggle_desk_lights
+    background_color: "#ffffff"
+    label:
+      text: "Desk Lights"
+      color: "#000000"
+    icon:
+      icon: spotlight
+      color: "#000000"
