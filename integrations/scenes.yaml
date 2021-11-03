@@ -1,0 +1,378 @@
+- id: '1606797196284'
+  name: Just Came Home
+  entities:
+    switch.lumiere_porte_d_entree_1:
+      friendly_name: Lumière porte d'entrée_1
+      state: 'on'
+    light.salon_encastre:
+      supported_color_modes:
+      - brightness
+      - onoff
+      color_mode: brightness
+      brightness: 47
+      friendly_name: Salon encastré
+      supported_features: 0
+      state: 'on'
+    switch.cuisine_armoire_1:
+      friendly_name: Cuisine armoire_1
+      state: 'on'
+  icon: mdi:lightning-bolt-outline
+- id: '1607473864374'
+  name: Watching TV
+  entities:
+    switch.3356160740f520f1f661:
+      friendly_name: Cuisine armoire
+      icon: mdi:wall-sconce-flat
+      state: 'on'
+    switch.3356160740f520f0c69d:
+      friendly_name: Cuisine comptoire
+      icon: mdi:wall-sconce-flat
+      state: 'off'
+    light.2801180310521cfb02fe:
+      brightness: 3
+      friendly_name: Salon encastré
+      supported_features: 1
+      state: 'on'
+    light.28011803c82b96e06ac0:
+      friendly_name: Salon lustre
+      supported_features: 1
+      state: 'off'
+    switch.736152862462ab5c8994:
+      friendly_name: Lumière Corridor
+      icon: mdi:ceiling-light
+      state: 'off'
+    switch.7480185024a1600ec807:
+      friendly_name: Cuisine Ilot
+      icon: mdi:ceiling-light
+      state: 'off'
+    switch.7480185024a1600e0b98:
+      friendly_name: Cuisine centre
+      icon: mdi:wall-sconce-flat
+      state: 'off'
+    switch.7361528610521cc031d7:
+      friendly_name: Lumière porte d'entrée
+      icon: mdi:ceiling-light
+      state: 'off'
+  icon: mdi:television
+- id: '1608575540378'
+  name: Switch Everything Off
+  entities:
+    lock.porte_d_apos_entree:
+      battery_level: 55
+      friendly_name: Porte d’entree
+      icon: mdi:door-closed-lock
+      state: locked
+    switch.garage_prise_droite_mss110_main_channel:
+      friendly_name: Treadmill
+      icon: mdi:run-fast
+      state: 'off'
+    media_player.ilyas_s_fire_tv:
+      is_volume_muted: false
+      media_content_type: standby
+      media_position_updated_at: '2021-10-12T21:27:57.404960+00:00'
+      available: true
+      last_called: false
+      last_called_timestamp:
+      last_called_summary:
+      connected_bluetooth:
+      bluetooth_list: []
+      friendly_name: ilyas's Fire TV
+      supported_features: 56253
+      state: standby
+    switch.cuisine_armoire_1:
+      friendly_name: Cuisine armoire_1
+      state: 'on'
+    light.lampe_a_droite:
+      supported_color_modes:
+      - brightness
+      - hs
+      - onoff
+      friendly_name: Lampe à droite
+      supported_features: 0
+      state: 'off'
+    light.lampe_a_gauche:
+      supported_color_modes:
+      - brightness
+      - hs
+      - onoff
+      friendly_name: Lampe à gauche
+      supported_features: 0
+      state: 'off'
+    light.salon_encastre:
+      supported_color_modes:
+      - brightness
+      - onoff
+      friendly_name: Salon encastré
+      supported_features: 0
+      state: 'off'
+    light.salon_lustre:
+      supported_color_modes:
+      - brightness
+      - onoff
+      friendly_name: Salon lustre
+      supported_features: 0
+      state: 'off'
+    switch.cuisine_ilot_1:
+      friendly_name: Cuisine Ilot_1
+      state: 'off'
+    switch.cuisine_centre_1:
+      friendly_name: Cuisine centre_1
+      state: 'off'
+    switch.lumiere_porte_d_entree_1:
+      friendly_name: Lumière porte d'entrée_1
+      state: 'off'
+    switch.lumiere_corridor_1:
+      friendly_name: Lumière Corridor_1
+      state: 'off'
+    light.sous_sol_dimmer:
+      supported_color_modes:
+      - brightness
+      - onoff
+      friendly_name: Sous sol dimmer
+      supported_features: 0
+      state: unavailable
+    switch.bureau_orange_1:
+      friendly_name: Bureau orange_1
+      state: 'off'
+    light.lumiere_gym:
+      supported_color_modes:
+      - brightness
+      - onoff
+      friendly_name: Lumière gym
+      supported_features: 0
+      state: 'off'
+  icon: mdi:airplane
+- id: '1608680300413'
+  name: Netflix In Bed - Night
+  entities:
+    light.lampe_a_gauche:
+      supported_color_modes:
+      - brightness
+      - hs
+      - onoff
+      color_mode: hs
+      brightness: 37
+      hs_color:
+      - 150
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      xy_color:
+      - 0.323
+      - 0.329
+      friendly_name: Lampe à gauche
+      supported_features: 0
+      state: 'on'
+  icon: mdi:netflix
+- id: '1609876672241'
+  name: Gym session
+  entities:
+    climate.neviweb130_climate_thermostat:
+      hvac_modes:
+      - 'off'
+      - auto
+      - heat
+      min_temp: 5
+      max_temp: 20
+      preset_modes:
+      - none
+      - away
+      - temporary
+      current_temperature: 13.4
+      temperature: 18
+      hvac_action: heating
+      preset_mode: none
+      wattage: 2508
+      second display: default
+      occupancy: none
+      heat_level: 100
+      keypad: unlock
+      backlight:
+      rssi: -45
+      id: 156804
+      unit_of_measurement: °C
+      friendly_name: Gym Thermostat
+      icon: mdi:thermometer
+      supported_features: 17
+      device_class: temperature
+      state: heat
+    light.4155168024a160078dff:
+      brightness: 255
+      friendly_name: Lumière gym
+      icon: mdi:wall-sconce-flat
+      supported_features: 1
+      state: 'on'
+    switch.garage_prise_droite_mss110_main_channel:
+      friendly_name: Treadmill
+      icon: mdi:run-fast
+      state: 'on'
+  icon: mdi:dumbbell
+- id: '1612404377230'
+  name: Turn Off Gym
+  entities:
+    light.4155168024a160078dff:
+      friendly_name: Lumière gym
+      icon: mdi:wall-sconce-flat
+      supported_features: 1
+      state: 'off'
+    switch.garage_prise_droite_mss110_main_channel:
+      friendly_name: Treadmill
+      icon: mdi:run-fast
+      state: 'off'
+    climate.neviweb130_climate_thermostat:
+      hvac_modes:
+      - 'off'
+      - auto
+      - heat
+      min_temp: 5
+      max_temp: 20
+      preset_modes:
+      - none
+      - away
+      - temporary
+      current_temperature: 15.8
+      temperature: 10
+      hvac_action: idle
+      preset_mode: none
+      wattage: 2508
+      second_display: default
+      occupancy: none
+      heat_level: 0
+      keypad: unlock
+      backlight:
+      time_format: 24h
+      temperature_format: celsius
+      setpoint_max: 20
+      setpoint_min: 5
+      rssi: -49
+      id: 156804
+      unit_of_measurement: celsius
+      friendly_name: Gym Thermostat
+      icon: mdi:thermometer
+      supported_features: 17
+      device_class: temperature
+      state: heat
+  icon: mdi:lightbulb-off
+- id: '1629158787428'
+  name: Start Shooting
+  entities:
+    media_player.bureau_dot:
+      friendly_name: Bureau Dot
+      supported_features: 56253
+      state: unavailable
+    switch.bureau_dot_do_not_disturb_switch:
+      friendly_name: Bureau Dot do not disturb switch
+      icon: mdi:minus-circle-off
+      device_class: switch
+      state: unavailable
+    switch.workbench_1:
+      friendly_name: Workbench_1
+      state: 'on'
+    switch.workbench_2:
+      friendly_name: Workbench_2
+      state: 'on'
+    switch.workbench_3:
+      friendly_name: Workbench_3
+      state: 'off'
+    switch.workbench_4:
+      friendly_name: Workbench_4
+      state: 'off'
+    switch.workbench:
+      friendly_name: Workbench
+      state: 'off'
+    light.elgato_key_light:
+      min_mireds: 143
+      max_mireds: 344
+      supported_color_modes:
+      - color_temp
+      color_mode: color_temp
+      brightness: 54
+      color_temp: 264
+      hs_color:
+      - 26.933
+      - 38.871
+      rgb_color:
+      - 255
+      - 200
+      - 155
+      xy_color:
+      - 0.434
+      - 0.369
+      friendly_name: Elgato Key Light
+      supported_features: 0
+      state: 'on'
+  icon: mdi:movie
+- id: '1629158849329'
+  name: Stop Shooting
+  entities:
+    light.elgato_key_light:
+      min_mireds: 143
+      max_mireds: 344
+      supported_color_modes:
+      - color_temp
+      friendly_name: Elgato Key Light
+      supported_features: 0
+      state: 'off'
+    media_player.bureau_dot:
+      friendly_name: Bureau Dot
+      supported_features: 56253
+      state: unavailable
+    switch.bureau_dot_do_not_disturb_switch:
+      friendly_name: Bureau Dot do not disturb switch
+      icon: mdi:minus-circle-off
+      device_class: switch
+      state: unavailable
+    switch.workbench_1:
+      friendly_name: Workbench_1
+      state: 'on'
+    switch.workbench_2:
+      friendly_name: Workbench_2
+      state: 'on'
+    switch.workbench_3:
+      friendly_name: Workbench_3
+      state: 'on'
+    switch.workbench_4:
+      friendly_name: Workbench_4
+      state: 'on'
+    switch.workbench:
+      friendly_name: Workbench
+      state: 'on'
+  icon: mdi:film
+- id: '1633134145600'
+  name: Netflix In Bed - Day
+  entities:
+    cover.tradfri_blind:
+      current_position: 4
+      model: FYRTUR block-out roller blind
+      friendly_name: TRADFRI blind
+      supported_features: 15
+      state: open
+    cover.tradfri_blind_2:
+      current_position: 7
+      model: FYRTUR block-out roller blind
+      friendly_name: TRADFRI blind 2
+      supported_features: 15
+      state: open
+    light.lampe_a_gauche:
+      supported_color_modes:
+      - brightness
+      - hs
+      - onoff
+      color_mode: hs
+      brightness: 31
+      hs_color:
+      - 150
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      xy_color:
+      - 0.323
+      - 0.329
+      friendly_name: Lampe à gauche
+      supported_features: 0
+      state: 'on'
+  icon: mdi:netflix

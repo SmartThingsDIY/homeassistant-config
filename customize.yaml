@@ -1,0 +1,8 @@
+media_player.as_aftsss_cast:
+  friendly_name: FireTv Cast
+sensor.energy_noemie_bureau:
+  icon: mdi:chart-histogram
+  device_class: energy
+sensor.energy_ilyas_bureau:
+  icon: mdi:chart-histogram
+  device_class: energy

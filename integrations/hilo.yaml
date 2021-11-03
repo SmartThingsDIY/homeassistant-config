@@ -1,0 +1,2 @@
+username: !secret hilo_username
+password: !secret hilo_password

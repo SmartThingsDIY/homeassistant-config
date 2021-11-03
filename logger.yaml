@@ -1,0 +1,3 @@
+default: warning
+logs:
+  custom_components.powercalc: debug

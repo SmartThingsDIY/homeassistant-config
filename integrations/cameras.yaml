@@ -1,0 +1,13 @@
+- platform: generic
+  name: camera front door
+  still_image_url: http://XX.XX.XX.XX:8080/cgi-bin/snapshot.sh?res=high&watermark=yes
+  stream_source: rtsp://XX.XX.XX.XX/ch0_0.h264
+  username: !secret camera_username
+  password: !secret camera_password
+
+- platform: generic
+  name: camera solarium
+  still_image_url: http://XX.XX.XX.XX:8080/cgi-bin/snapshot.sh?res=high&watermark=yes
+  stream_source: rtsp://XX.XX.XX.XX/ch0_0.h264
+  username: !secret camera_username
+  password: !secret camera_password

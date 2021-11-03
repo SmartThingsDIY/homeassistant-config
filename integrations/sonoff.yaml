@@ -1,0 +1,4 @@
+username: !secret sonoff_email
+password: !secret sonoff_password
+force_update: [power, current, voltage, consumption]
+sensors: [power, current, voltage, consumption]

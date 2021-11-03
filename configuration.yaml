@@ -1,16 +1,16 @@
-# Configure a default setup of Home Assistant (frontend, api, etc)
 
 default_config:
+stream:
 frontend:
   themes: !include_dir_merge_named themes
 
+# Configure a default setup of Home Assistant (frontend, api, etc)
 homeassistant:
   customize: !include customize.yaml
   media_dirs:
     camera_front_door: /config/www/camera_front_door
     camera_solarium: /config/www/camera_solarium
-
-stream:
+# all integrations are under /integrations folder
 camera: !include integrations/cameras.yaml
 group: !include integrations/groups.yaml
 automation: !include automations.yaml

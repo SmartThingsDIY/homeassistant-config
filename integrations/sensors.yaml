@@ -1,0 +1,181 @@
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: memory_use
+    - type: processor_use
+    - type: processor_temperature
+
+- platform: integration
+  name: total_energy_consumed
+  source: sensor.smartenergymeter
+  unit_prefix: k
+  method: left
+  round: 2
+
+- platform: integration
+  name: energy_thermostat_cuisine
+  source: sensor.thermostat_cuisine
+  unit_prefix: k
+  method: left
+  round: 2
+
+- platform: integration
+  name: energy_thermostat_bureau
+  source: sensor.thermostat_bureau
+  unit_prefix: k
+  method: left
+  round: 2
+
+- platform: integration
+  name: energy_thermostat_grande_chambre
+  source: sensor.thermostat_grande_chambre
+  unit_prefix: k
+  unit_time: h
+  method: left
+  round: 3
+
+- platform: integration
+  name: energy_thermostat_sous_sol
+  source: sensor.thermostat_sous_sol
+  unit_prefix: k
+  method: left
+  round: 2
+
+- platform: integration
+  name: energy_ilyas_bureau_power
+  source: sensor.sonoff_10014911f8_power
+  unit_prefix: k
+  method: left
+  round: 2
+
+- platform: integration
+  name: energy_noemie_bureau_power
+  source: sensor.sonoff_100149180a_power
+  unit_prefix: k
+  method: left
+  round: 2
+
+- platform: template
+  sensors:
+    total_energy_solarium:
+      friendly_name: Total Energy Solarium
+      unit_of_measurement: kWh
+      value_template: "{{ '%.2f' | format(((states('sensor.energy_noemie_bureau') | float) + states('sensor.troubette_123_1d') | float)) }}"
+    total_energy_solarium_cost:
+      friendly_name: Total Energy Solarium Cost
+      unit_of_measurement: kWh
+      value_template: "{{ '%.2f' | format(((states('sensor.energy_noemie_bureau_power_cost') | float) + states('sensor.congelo_123_1d_cost') | float)) }}"
+
+    energy_ilyas_bureau:
+      friendly_name: Energy iLyas Bureau
+      unit_of_measurement: kWh
+      value_template: "{{ state_attr('switch.sonoff_10014911f8', 'consumption').0 }}"
+    energy_noemie_bureau:
+      friendly_name: Energy Noemie Bureau
+      unit_of_measurement: kWh
+      value_template: "{{ state_attr('switch.sonoff_100149180a', 'consumption').0 }}"
+
+    # Les thermostats Hilo
+    energy_thermostat_grande_chambre_kwh:
+      friendly_name: Energy Thermostat Grande Chambre kWh
+      unit_of_measurement: kWh
+      value_template: "{{ '%.2f' | format(((states('sensor.thermostat_grande_chambre') | float) / 1000)) }}"
+    energy_thermostat_bureau_kwh:
+      friendly_name: Energy Thermostat Bureau kWh
+      unit_of_measurement: kWh
+      value_template: "{{ '%.2f' | format(((states('sensor.thermostat_bureau') | float) / 1000)) }}"
+    energy_thermostat_cuisine_kwh:
+      friendly_name: Energy Thermostat Cuisine kWh
+      unit_of_measurement: kWh
+      value_template: "{{ '%.2f' | format(((states('sensor.thermostat_cuisine') | float) / 1000)) }}"
+    energy_thermostat_sous_sol_kwh:
+      friendly_name: Energy Thermostat Sous-Sol kWh
+      unit_of_measurement: kWh
+      value_template: "{{ '%.2f' | format(((states('sensor.thermostat_sous_sol') | float) / 1000)) }}"
+
+    # Le thermostat Sinope
+    watt_gym_thermostat:
+      friendly_name: "Gym Thermostat Watt"
+      unit_of_measurement: "W"
+      value_template: "{{ state_attr('climate.neviweb130_climate_thermostat', 'wattage') * (state_attr('climate.neviweb130_climate_thermostat', 'heat_level')/100) }}"
+    cost_gym_thermostat:
+      friendly_name: Cost Gym Thermostat
+      unit_of_measurement: kWh
+      value_template: "{{ '%.2f' | format(((states('sensor.watt_gym_thermostat') | float) * states('input_number.energy_cost_first_40') | float)) }}"
+
+- platform: template
+  sensors:
+    daily_energy_cost:
+      entity_id: sensor.energy_spent
+      value_template: "{{ '%.2f' | format(((states('sensor.daily_energy_first_40') | float * states('input_number.energy_cost_first_40') | float) + (states('sensor.daily_energy_after_40') | float * states('input_number.energy_cost_after_40') | float) + states('input_number.energy_access_fee') | float) | round(2)) }}"
+
+- platform: template
+  sensors:
+    mail_deliveries_message:
+      friendly_name: "Deliveries Summary"
+      value_template: >
+        {# Deliveries Sentence #}
+          {% macro deliveries_sentence() -%}
+                {%- if states("sensor.mail_usps_mail")|int == 0 -%}
+                  No
+                {%- else -%}
+                  {{states("sensor.mail_usps_mail")|int}}
+                {%- endif -%}
+              {{' '}} 
+                {%- if states("sensor.mail_usps_mail")|int <= 1 -%}
+                  pieces of mail
+                {%- else -%}
+                  pieces of mail
+                {%- endif -%}
+              {{' '}}will be delivered.{{' '}} 
+                {%- if states("sensor.mail_usps_delivering")|int == 0 -%}
+                  No
+                {%- else -%}
+                  {{states("sensor.mail_usps_delivering")|int}}
+                {%- endif -%}
+              {{' '}} 
+                {%- if states("sensor.mail_usps_delivering")|int == 1 -%}
+                  USPS package is
+                {%- else -%}
+                  USPS packages are
+                {%- endif -%}
+              {{' '}}in transit.{{' '}}
+                {%- if states("sensor.mail_fedex_delivering")|int == 0 -%}
+                  No
+                {%- else -%}
+                  {{states("sensor.mail_fedex_delivering")|int}}
+                {%- endif -%}
+              {{' '}} 
+                {%- if states("sensor.mail_fedex_delivering")|int == 1 -%}
+                  FedEx package is
+                {%- else -%}
+                  Fedex packages are
+                {%- endif -%}
+              {{' '}}in transit.{{' '}}
+              {%- if states("sensor.mail_ups_delivering")|int == 0 -%}
+                  No
+                {%- else -%}
+                  {{states("sensor.mail_ups_delivering")|int}}
+                {%- endif -%}
+              {{' '}} 
+                {%- if states("sensor.mail_ups_delivering")|int == 1 -%}
+                  UPS package is
+                {%- else -%}
+                  UPS packages are
+                {%- endif -%}
+              {{' '}}in transit.{{' '}}
+              {%- if states("sensor.mail_amazon_packages")|int == 0 -%}
+                  No
+                {%- else -%}
+                  {{states("sensor.mail_amazon_packages")|int}}
+                {%- endif -%}
+              {{' '}} 
+                {%- if states("sensor.mail_amazon_packages")|int == 1 -%}
+                  Amazon package is
+                {%- else -%}
+                  Amazon packages are
+                {%- endif -%}
+              {{' '}}in transit.{{' '}}
+          {%- endmacro %}
+        {{deliveries_sentence()}}

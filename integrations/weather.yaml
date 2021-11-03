@@ -1,0 +1,3 @@
+- platform: environment_canada
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude

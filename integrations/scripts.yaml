@@ -1,0 +1,62 @@
+lock_all_doors:
+  alias: Lock all doors
+  sequence:
+  - device_id: 9c0c795a163111eb8a34f76504b51721
+    domain: cover
+    entity_id: cover.porte_du_garage_msg100_main_channel
+    type: close
+  - device_id: fe8d51f614d311ebb0fb652b85a5bf0f
+    domain: lock
+    entity_id: lock.porte_d_apos_entree
+    type: lock
+  mode: single
+start_netflix:
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.fire_tv_salon
+      source: com.netflix.ninja
+    entity_id: media_player.fire_tv_salon
+  mode: single
+  alias: Start Netflix
+  icon: mdi:netflix
+stop_netflix:
+  sequence:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.fire_tv_salon
+      source: '!com.netflix.ninja'
+    entity_id: media_player.fire_tv_salon
+  mode: single
+  alias: Stop Netflix
+  icon: mdi:netflix
+thermopompe_salon_power:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 26377d54271e1a009bd89c17c8353726
+    data:
+      device: ThermoPompe Salon
+      command: Power
+  mode: single
+  alias: ThermoPompe Salon - Power
+thermopompe_salon_temp_up:
+  alias: ThermoPompe Salon - Temp Up
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 26377d54271e1a009bd89c17c8353726
+    data:
+      device: ThermoPompe Salon
+      command: Temp Up
+  mode: single
+thermopompe_salon_temp_down:
+  alias: ThermoPompe Salon - Temp Down
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 26377d54271e1a009bd89c17c8353726
+    data:
+      device: ThermoPompe Salon
+      command: Temp Down
+  mode: single

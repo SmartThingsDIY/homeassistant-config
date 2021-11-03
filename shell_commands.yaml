@@ -1,0 +1,2 @@
+delete_front_camera_motion_files: /bin/rm -Rf /backup/front-camera/*
+delete_solarium_camera_motion_files: /bin/rm -Rf /backup/solarium-camera/*

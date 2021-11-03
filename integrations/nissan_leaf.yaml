@@ -1,0 +1,10 @@
+username: !secret nissan_leaf_email
+password: !secret nissan_leaf_password
+region: "NCI"
+update_interval:
+  hours: 1
+update_interval_charging:
+  minutes: 15
+update_interval_climate:
+  minutes: 5
+force_miles: true

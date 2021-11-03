@@ -1,0 +1,7 @@
+daily_energy:
+  source: sensor.total_energy_consumed
+  name: Daily Energy
+  cycle: daily
+  tariffs:
+    - first_40
+    - after_40
