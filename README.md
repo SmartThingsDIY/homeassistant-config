@@ -20,7 +20,14 @@ I have it set up to automatically take pictures when movement is detected and se
 
 <img width="250" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/security_camera.png?raw=true">
 
+### Motion Detectors
+I use 2 brands of ZigBee Motion Sensor to detect movement and trigger automations
+  * These [SONOFF SNZB-03](https://amzn.to/31hJCEi). They are small and discreet but I found them to be fragile and unreliable.
+  * These [Hacbop ZigBee PIR](https://amzn.to/3q2V8xV) that are a little bit more expensive than the [SONOFF SNZB-03](https://amzn.to/31hJCEi) but they are more reliable and have a longer battery life.
+
 ### Plugs
+  * WIP
+### Buttons
   * WIP
 ### Voice Interaction
   * WIP
@@ -28,6 +35,7 @@ I have it set up to automatically take pictures when movement is detected and se
   * WIP
 ### Weather and Climate related
   * WIP
+### DIY (Arduino + ESP32 + ESP8266)
   * WIP
 
 ## My Home Assistant dashboard
