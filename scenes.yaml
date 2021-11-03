@@ -209,52 +209,7 @@
       icon: mdi:run-fast
       state: 'on'
   icon: mdi:dumbbell
-- id: '1612404377230'
-  name: Turn Off Gym
-  entities:
-    light.4155168024a160078dff:
-      friendly_name: Lumière gym
-      icon: mdi:wall-sconce-flat
-      supported_features: 1
-      state: 'off'
-    switch.garage_prise_droite_mss110_main_channel:
-      friendly_name: Treadmill
-      icon: mdi:run-fast
-      state: 'off'
-    climate.neviweb130_climate_thermostat:
-      hvac_modes:
-      - 'off'
-      - auto
-      - heat
-      min_temp: 5
-      max_temp: 20
-      preset_modes:
-      - none
-      - away
-      - temporary
-      current_temperature: 15.8
-      temperature: 10
-      hvac_action: idle
-      preset_mode: none
-      wattage: 2508
-      second_display: default
-      occupancy: none
-      heat_level: 0
-      keypad: unlock
-      backlight:
-      time_format: 24h
-      temperature_format: celsius
-      setpoint_max: 20
-      setpoint_min: 5
-      rssi: -49
-      id: 156804
-      unit_of_measurement: celsius
-      friendly_name: Gym Thermostat
-      icon: mdi:thermometer
-      supported_features: 17
-      device_class: temperature
-      state: heat
-  icon: mdi:lightbulb-off
+
 - id: '1629158787428'
   name: Start Shooting
   entities:

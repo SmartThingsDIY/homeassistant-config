@@ -15,7 +15,6 @@ camera: !include integrations/cameras.yaml
 group: !include integrations/groups.yaml
 automation: !include automations.yaml
 script: !include integrations/scripts.yaml
-scene: !include integrations/scenes.yaml
 ios: !include integrations/ios.yaml
 sensor: !include integrations/sensors.yaml
 recorder: !include integrations/recorder.yaml
@@ -26,3 +25,4 @@ hilo: !include integrations/hilo.yaml
 sonoff: !include integrations/sonoff.yaml
 utility_meter: !include integrations/utility_meter.yaml
 nissan_leaf: !include integrations/nissan_leaf.yaml
+scene: !include scenes.yaml
