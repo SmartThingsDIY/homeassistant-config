@@ -4,19 +4,6 @@ Here's my [Home Assistant](https://home-assistant.io/) configuration. I have ins
 
 I regularly update my configuration files. If you like anything here, Be sure to :star2: my repo!
 
-## Automation: Cats want to come in
-
-When one of my cats wants to come in, they usually come to the door and start peeking inside trying to get our attention.
-I have put this [Hacbop PIR Motion detector](https://amzn.to/3q2V8xV) right at the edge of the door. When it detects a motion, it triggers an automation that asks my home camera at the back to take a picture and send it to my iPhone.
-
-Here is where the PIR motion detector is placed
-
-<img width="450" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/motion_1.png?raw=true"> <img width="350" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/motion_2.png?raw=true">
-
-And here is what the camera screenshot looks like
-
-<img width="550" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/motion_3.jpeg?raw=true"> <img width="350" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/motion_4.png?raw=true">
-
 ## Some of the devices and services that I use with HA
 
 ### Lights and Switches
@@ -65,6 +52,19 @@ I also use the [SONOFF SNZB-04](https://amzn.to/31tMnTd) Door & Window Sensor to
 ### DIY (Arduino + ESP32 + ESP8266)
 
 * WIP
+
+## Automation: Cats want to come in
+
+When one of my cats wants to come in, they usually come to the door and start peeking inside trying to get our attention.
+I have put this [Hacbop PIR Motion detector](https://amzn.to/3q2V8xV) right at the edge of the door. When it detects a motion, it triggers an automation that asks my home camera at the back to take a picture and send it to my iPhone.
+
+Here is where the PIR motion detector is placed
+
+<img width="450" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/motion_1.png?raw=true"> <img width="350" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/motion_2.png?raw=true">
+
+And here is what the camera screenshot looks like
+
+<img width="450" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/motion_3.jpeg?raw=true"> <img height="350" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/motion_4.png?raw=true">
 
 ## My Home Assistant dashboard
 
