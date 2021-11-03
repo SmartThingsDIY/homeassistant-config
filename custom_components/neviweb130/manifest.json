@@ -1,0 +1,9 @@
+{
+  "domain": "neviweb130",
+  "name": "Sinope Neviweb130",
+  "documentation": "https://github.com/claudegel/sinope-130",
+  "dependencies": [],
+  "codeowners": ["@claudegel"],
+  "requirements": [],
+  "version": "0.6.0"
+}

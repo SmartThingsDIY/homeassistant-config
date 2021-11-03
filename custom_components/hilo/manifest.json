@@ -1,0 +1,10 @@
+{
+  "domain": "hilo",
+  "name": "Hilo HA integration",
+  "documentation": "https://github.com/francispoisson/hilo",
+  "issue_tracker": "https://github.com/balloob/hue/issues",
+  "dependencies": [],
+  "codeowners": ["@francispoisson"],
+  "version": "0.1.1",
+  "requirements": []
+}
