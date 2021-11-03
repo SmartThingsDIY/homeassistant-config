@@ -1,0 +1,1322 @@
+- id: '1603420335851'
+  alias: Lock door after midnight
+  description: ''
+  trigger:
+  - platform: time
+    at: '23:59'
+  condition:
+  - condition: device
+    device_id: fe8d51f614d311ebb0fb652b85a5bf0f
+    domain: lock
+    entity_id: lock.porte_d_apos_entree
+    type: is_unlocked
+  action:
+  - device_id: fe8d51f614d311ebb0fb652b85a5bf0f
+    domain: lock
+    entity_id: lock.porte_d_apos_entree
+    type: lock
+  mode: single
+- id: '1603494388432'
+  alias: Away From Home ? Enable Away Mode
+  description: ''
+  trigger:
+  - platform: event
+    event_type: ios.notification_action_fired
+    context:
+      user_id:
+      - cef6abbd4a91408abcd68fbffa4b9553
+    event_data:
+      actionName: ENABLE_AWAY_MODE
+  condition: []
+  action:
+  - scene: scene.away_mode
+  - service: cloud.remote_connect
+  mode: single
+- id: '1603737561143'
+  alias: Disconnect "Remote UI" When I'm Home
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.ilyas
+    zone: zone.home
+    event: enter
+  condition: []
+  action:
+  - service: cloud.remote_disconnect
+    data: {}
+  mode: single
+- id: '1604547741002'
+  alias: Away From Home ?
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.ilyas
+    zone: zone.home
+    event: leave
+  condition: []
+  action:
+  - service: notify.mobile_app_iphone_12_pro_ilyas
+    data:
+      message: Do you want to enable Away Mode?
+      title: Leaving home?
+      data:
+        push:
+          category: awaymode
+  mode: single
+- id: '1605672393007'
+  alias: Notify when printer black ink goes low
+  description: ''
+  trigger:
+  - type: value
+    platform: device
+    device_id: 2ebe6a57b2b075b168b38d799f861543
+    entity_id: sensor.canon_tr4500_series_black
+    domain: sensor
+    below: 15
+  condition: []
+  action:
+  - service: notify.mobile_app_iphone_12_pro_ilyas
+    data:
+      message: L'encre noir de l'imprimente est a 15%. Tu veux tu le commander?
+  - service: notify.mobile_app_iphone_12_pro_ilyas
+    data:
+      message: L'encre noir de l'imprimente est a 15%. Tu veux tu le commander?
+  mode: single
+- id: '1605672490410'
+  alias: Notify when printer color ink goes low
+  description: ''
+  trigger:
+  - type: value
+    platform: device
+    device_id: 2ebe6a57b2b075b168b38d799f861543
+    entity_id: sensor.canon_tr4500_series_color
+    domain: sensor
+    below: 16
+  condition: []
+  action:
+  - service: notify.mobile_app_iphone
+    data:
+      message: L'encre de couleur de l'imprimente est a 15%. Tu veux tu le commander?
+  - service: notify.mobile_app_ipad
+    data:
+      message: L'encre de couleur de l'imprimente est a 15%. Tu veux tu le commander?
+  mode: single
+- id: '1605987223476'
+  alias: Turn On lights at sunset
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:30:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: cd9f9f6967fc45298b85fcca241c5f93
+    entity_id: light.salon_encastre
+    domain: light
+    brightness_pct: 30
+  - type: turn_on
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+  mode: single
+- id: '1607473739446'
+  alias: Netflix In Bed - Enable Theatre Mode - NIGHT
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.ilyas_s_fire_tv
+    attribute: app_id
+    to: com.netflix.ninja
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - platform: state
+    entity_id: media_player.ilyas_s_fire_tv
+    attribute: app_id
+    to: com.amazon.firebat
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - platform: state
+    entity_id: media_player.ilyas_s_fire_tv
+    to: AppleTV
+    attribute: friendly_name
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  condition:
+  - condition: time
+    after: '16:00:00'
+    before: 05:00:00
+  action:
+  - scene: scene.netflix_in_bed
+  mode: single
+- id: '1607618843280'
+  alias: Turn on Air Exchanger when air quality is excellent
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.u_s_air_quality_index
+    below: '30'
+  condition:
+  - condition: device
+    type: is_off
+    device_id: 54b37db8163411eb9ad1ad790c34e9a1
+    entity_id: switch.30445060c44f338013c1
+    domain: switch
+  action:
+  - service: notify.alexa_media_alexa_cuisine
+    data:
+      message: hum... La qualité de l'air exterieur est excellente. je vais allumer
+        l'échangeur d'air
+      data:
+        type: tts
+  - delay: 00:00:05
+  - type: turn_on
+    device_id: 54b37db8163411eb9ad1ad790c34e9a1
+    entity_id: switch.30445060c44f338013c1
+    domain: switch
+  mode: single
+- id: '1608574342536'
+  alias: Tag Morning medication is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: e706a521-808b-4ddb-b7d2-bdb47da9d3c0
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.morning_medication
+  mode: single
+- id: '1608590921754'
+  alias: Reset morning medication tag every night
+  description: ''
+  trigger:
+  - platform: time
+    at: 02:00:00
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.morning_medication
+  mode: single
+- id: '1608601825669'
+  alias: Notify when new Hass is released
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_iphone_12_pro_ilyas
+    data:
+      message: New Haas available
+  mode: single
+- id: '1609081650180'
+  alias: Notify if forgot to take morning medication
+  description: ''
+  trigger:
+  - platform: time
+    at: '11:00:00'
+  condition:
+  - condition: state
+    entity_id: input_boolean.morning_medication
+    state: 'off'
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    message: Oublié tes medocs ce matin ?
+    title: ''
+  mode: single
+- id: '1609088285550'
+  alias: Turn off Air Exchanger when air quality is not good
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.u_s_air_quality_index
+    above: '30'
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 54b37db8163411eb9ad1ad790c34e9a1
+    entity_id: switch.30445060c44f338013c1
+    domain: switch
+  action:
+  - service: notify.alexa_media_alexa_cuisine
+    data:
+      message: hum... La qualité de l'air exterieur n'est pas optimal. je vais eteindre
+        l'échangeur d'air
+      data:
+        type: tts
+  - delay: 00:00:05
+  - type: turn_off
+    device_id: 54b37db8163411eb9ad1ad790c34e9a1
+    entity_id: switch.30445060c44f338013c1
+    domain: switch
+  mode: single
+- id: '1609169943797'
+  alias: Notify when disk is almost full
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.disk_use_percent_home
+    above: '50'
+  condition: []
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: Raspi disk is half full
+  mode: single
+- id: '1609182901674'
+  alias: Turn on RDC lights on a cloudy day
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.chez_nous_cloud_ceiling
+    below: '3500'
+  condition:
+  - condition: sun
+    before: sunset
+    after: sunrise
+  - condition: and
+    conditions:
+    - condition: device
+      device_id: 71a164ba17d511ebbf9975fdb372b5a6
+      domain: media_player
+      entity_id: media_player.fire_tv
+      type: is_on
+    - condition: or
+      conditions:
+      - condition: device
+        device_id: 71a2276117d511ebb65cab236a7c1de7
+        domain: media_player
+        entity_id: media_player.bureau_show
+        type: is_playing
+  - condition: zone
+    entity_id: person.ilyas
+    zone: zone.home
+  action:
+  - service: notify.alexa_media_alexa_cuisine
+    data:
+      message: hum... il fait un peu sombre ici. je vais allumer quelques lumieres
+      data:
+        type: tts
+  - delay: 00:00:05
+  - service: script.cloudy_day_rdc
+    data: {}
+  mode: single
+- id: '1609382924477'
+  alias: Tag Workbench lights is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: e5e0ac1b-ba9d-4a40-bd19-c609e8633579
+  condition: []
+  action:
+  - scene: scene.diy_time
+  mode: single
+- id: '1610717877534'
+  alias: Notify when update is available
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.updater
+    to: 'on'
+    from: 'off'
+  condition: []
+  action:
+  - service: notify.mobile_app_iphone_12_pro_ilyas
+    data:
+      message: Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version')
+        }} is available.
+  mode: single
+- id: '1612109512599'
+  alias: Turn off bed lights at night
+  description: ''
+  trigger:
+  - platform: time
+    at: 02:00:00
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 407fa100ba73ed6f83c4f710afedf570
+    entity_id: light.lampe_a_droite
+    domain: light
+  - type: turn_off
+    device_id: 407fa100ba73ed6f83c4f710afedf570
+    entity_id: light.lampe_a_droite
+    domain: light
+  - device_id: 12807559c2dc597923fb7b5f47f2c3dd
+    domain: cover
+    entity_id: cover.tradfri_blind
+    type: set_position
+    position: 0
+  - device_id: 1d15aed097361a6ec9844e082df48e93
+    domain: cover
+    entity_id: cover.tradfri_blind_2
+    type: set_position
+    position: 0
+  mode: single
+- id: '1618003871741'
+  alias: Connect Remote UI When I leave home
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.ilyas
+    zone: zone.home
+    event: leave
+  condition: []
+  action:
+  - service: cloud.remote_connect
+  mode: single
+- id: '1619141102111'
+  alias: Notify if garage door is left open at night
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 707d7ce821abcf34a2633f51d6224e3f
+    domain: cover
+    entity_id: cover.porte_garage_msg100_main_channel
+    type: opened
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  condition:
+  - condition: sun
+    after: sunset
+    before: sunrise
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    message: Did you forget to close garage door?
+  mode: single
+- id: '1628888064313'
+  alias: Notify me when my plant is thirsty
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: PLANT/WATER_ME
+  condition: []
+  action:
+  - service: notify.alexa_media_bureau_dot
+    data:
+      message: Enjoying you coffee? I need hydration as well, you know?
+      target: media_player.bureau_dot
+      data:
+        type: announce
+        method: all
+  mode: single
+- id: '1633116970130'
+  alias: ' Notify If Solarium Motion Detector Battery is Low'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.motion_solarium_door_battery_level
+    to: '15'
+    from: '16'
+  condition: []
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    message: Low battery on motion detector at Solarium
+    title: Low Battery
+  mode: single
+- id: '1633134258039'
+  alias: Netflix In Bed - Enable Theatre Mode - DAY
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.ilyas_s_fire_tv
+    attribute: app_id
+    to: com.netflix.ninja
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - platform: state
+    entity_id: media_player.ilyas_s_fire_tv
+    attribute: app_id
+    to: com.amazon.firebat
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - platform: state
+    entity_id: media_player.ilyas_s_fire_tv
+    to: AppleTV
+    attribute: friendly_name
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  condition:
+  - condition: time
+    after: 04:00:00
+    before: '16:00:00'
+  action:
+  - scene: scene.netflix_in_bed_day
+  mode: single
+- id: '1633728955206'
+  alias: Notify If Solarium Door Sensor Battery is Low
+  description: ''
+  trigger:
+  - type: battery_level
+    platform: device
+    device_id: ccfe8a8e146aba89bdbd8b7b29e852a5
+    entity_id: sensor.openclosed_solarium_door_detector_68fa9d23_power
+    domain: sensor
+    below: 11
+  condition: []
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    title: Low Battery
+    message: Solarium Open/Close sensor battery is at 10%
+  mode: single
+- id: '1633784392510'
+  alias: Notify if cold in solarium
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: '15'
+  condition:
+  - type: is_open
+    condition: device
+    device_id: ccfe8a8e146aba89bdbd8b7b29e852a5
+    entity_id: binary_sensor.openclosed_solarium_door_detector_68fa9d23_ias_zone
+    domain: binary_sensor
+  - condition: numeric_state
+    entity_id: weather.rosemere
+    attribute: temperature
+    below: '15'
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    title: Suggestion
+    message: il fait 14C should Solarium door really stay open?
+  - service: notify.alexa_media_ilyas_s_fire_tv
+    data:
+      message: il fait 14C should Solarium door really stay open?
+      title: Suggestion
+  mode: single
+- id: '1633904044734'
+  alias: If Solarium Is Opened While Away-Mode Is Active
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: ccfe8a8e146aba89bdbd8b7b29e852a5
+    entity_id: binary_sensor.openclosed_solarium_door_detector_68fa9d23_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: state
+    entity_id: input_boolean.away_mode
+    state: 'on'
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    title: Alert !
+    message: Solarium Door was just opened
+  mode: single
+- id: '1633905077949'
+  alias: If Solarium Motion Is Detected While Solarium Door Is Closed
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 7c81f6f87e762afda6974eb19e99eb91
+    entity_id: binary_sensor.motion_detector_solarium_door_f3ebc1fe_ias_zone
+    domain: binary_sensor
+  condition:
+  - type: is_not_open
+    condition: device
+    device_id: ccfe8a8e146aba89bdbd8b7b29e852a5
+    entity_id: binary_sensor.openclosed_solarium_door_detector_68fa9d23_ias_zone
+    domain: binary_sensor
+  action:
+  - service: camera.snapshot
+    target:
+      entity_id: camera.camera_solarium
+    data:
+      filename: /config/www/camera_solarium/{{ now().strftime("%Y/%m/%d/%H.%M.%S")}}.jpg
+  - service: notify.mobile_app_iphone_12_pro_ilyas
+    data:
+      message: Detected movement at the back door
+      data:
+        attachment:
+          url: http://192.168.68.113:8123/local/camera_solarium/snapshot_latest.jpg
+  mode: single
+- id: '1633956562872'
+  alias: When I Leave Home
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: device_tracker.iphone_12_ilyas
+    zone: zone.home
+    event: leave
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.away_mode
+  mode: single
+- id: '1633956618074'
+  alias: When I Enter Home
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: device_tracker.iphone_12_ilyas
+    zone: zone.home
+    event: enter
+  condition: []
+  action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.away_mode
+  mode: single
+- id: '1633962237338'
+  alias: Notify When Motion Detector Solarium Is Tampered With
+  description: ''
+  trigger:
+  - type: problem
+    platform: device
+    device_id: 7c81f6f87e762afda6974eb19e99eb91
+    entity_id: binary_sensor.motion_solarium_door_tampered
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      filename: /config/www/camera_solarium/snapshot_latest.jpg
+    target:
+      entity_id: camera.camera_solarium
+  - service: camera.snapshot
+    target:
+      entity_id: camera.camera_solarium
+    data:
+      filename: /config/www/camera_solarium/{{ now().strftime("%Y/%m/%d/%H.%M.%S")}}.jpg
+  - service: notify.mobile_app_iphone_12_pro_ilyas
+    data:
+      message: Solarium Motion Detector Is Having Problems
+      data:
+        attachment:
+          url: http://192.168.68.113:8123/local/camera_solarium/snapshot_latest.jpg
+  mode: single
+- id: '1633962314151'
+  alias: Notify When Solarium Door Sensor Is Tampered With
+  description: ''
+  trigger:
+  - device_id: ccfe8a8e146aba89bdbd8b7b29e852a5
+    domain: zha
+    platform: device
+    type: device_offline
+    subtype: device_offline
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      filename: /config/www/camera_solarium/snapshot_latest.jpg
+    target:
+      entity_id: camera.camera_solarium
+  - service: camera.snapshot
+    target:
+      entity_id: camera.camera_solarium
+    data:
+      filename: /config/www/camera_solarium/{{ now().strftime("%Y/%m/%d/%H.%M.%S")}}.jpg
+  - service: notify.mobile_app_iphone_12_pro_ilyas
+    data:
+      message: Solarium Door Sensor Is Having Problems
+      data:
+        attachment:
+          url: http://192.168.68.113:8123/local/camera_solarium/snapshot_latest.jpg
+  mode: single
+- id: '1633973431757'
+  alias: If Solarium Motion Is Detected While Away-Mode Is Active
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 7c81f6f87e762afda6974eb19e99eb91
+    entity_id: binary_sensor.motion_detector_solarium_door_f3ebc1fe_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: state
+    entity_id: input_boolean.away_mode
+    state: 'on'
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    title: Alert !
+    message: Motion Detected At The Back
+  mode: single
+- id: '1633985463295'
+  alias: Switch Off Kitchen lights If Turned On Through Motion
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  condition:
+  - condition: state
+    entity_id: input_boolean.armoire_lights_through_motion
+    state: 'on'
+  action:
+  - type: turn_off
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.armoire_lights_through_motion
+  mode: single
+- id: '1633986451357'
+  alias: Front Door Button - Double Clicked - Night - Switch Everything On
+  description: ''
+  trigger:
+  - device_id: a3d2e97d3958b7b91d707506ee35d904
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: button
+  condition:
+  - condition: time
+    after: '16:00:00'
+    before: 08:00:00
+  action:
+  - scene: scene.etudes
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.away_mode
+  - service: notify.alexa_media_alexa_cuisine
+    data:
+      target: media_player.alexa_cuisine
+      data:
+        type: announce
+        method: all
+      message: Bienvenu a la maison!
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: fe272985094296876ba0817203e9b479
+    entity_id: switch.lumiere_porte_d_entree_1
+    domain: switch
+  mode: single
+- id: '1633986674824'
+  alias: Front Door Button - Double Clicked - Day
+  description: ''
+  trigger:
+  - device_id: a3d2e97d3958b7b91d707506ee35d904
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: button
+  condition:
+  - condition: time
+    after: 08:00:00
+    before: '16:00:00'
+  action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.away_mode
+  - device_id: 22253c1218cf2bf45ed635912a38058e
+    domain: vacuum
+    entity_id: vacuum.troubette
+    type: dock
+  - service: notify.alexa_media_alexa_cuisine
+    data:
+      target: media_player.alexa_cuisine
+      data:
+        type: announce
+        method: all
+      message: Bienvenu a la maison!
+  mode: single
+- id: '1634005955793'
+  alias: Troubette - Notify When Bin Is Full
+  description: ''
+  trigger:
+  - type: turned_on
+    platform: device
+    device_id: 22253c1218cf2bf45ed635912a38058e
+    entity_id: binary_sensor.troubette_bin_full
+    domain: binary_sensor
+  condition: []
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: Troubette Bin is full. Time To change it ;)
+  mode: single
+- id: '1634078681847'
+  alias: Front Door Button - One Click - Enable Remote Connect
+  description: ''
+  trigger:
+  - device_id: a3d2e97d3958b7b91d707506ee35d904
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: button
+  condition: []
+  action:
+  - service: cloud.remote_connect
+  mode: single
+- id: '1634078837900'
+  alias: Front Door Button - One Click - Launch Troubette
+  description: ''
+  trigger:
+  - device_id: a3d2e97d3958b7b91d707506ee35d904
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: button
+  condition:
+  - condition: time
+    after: '10:00:00'
+    before: '16:00:00'
+  action:
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - device_id: 22253c1218cf2bf45ed635912a38058e
+    domain: vacuum
+    entity_id: vacuum.troubette
+    type: clean
+  mode: single
+- id: '1634079011894'
+  alias: Front Door Button - One Click - Switch Everything Off
+  description: ''
+  trigger:
+  - device_id: a3d2e97d3958b7b91d707506ee35d904
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: button
+  condition: []
+  action:
+  - service: notify.alexa_media_alexa_cuisine
+    data:
+      target: media_player.alexa_cuisine
+      data:
+        type: announce
+        method: all
+      message: C'est noté! Je vais m'en occuper
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 45
+      milliseconds: 0
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.away_mode
+  - scene: scene.away_mode
+  mode: single
+- id: '1634135106848'
+  alias: Miroir Grande Chambre - Switch Off At Night
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition: []
+  action:
+  - type: turn_off
+    device_id: e30129612bd9375a9686c5ac0634ba08
+    entity_id: switch.sapin_noel_1
+    domain: switch
+  mode: single
+- id: '1634135158656'
+  alias: Miroir Grande Chambre - Switch On At Day
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:30:00
+  condition: []
+  action:
+  - type: turn_on
+    device_id: e30129612bd9375a9686c5ac0634ba08
+    entity_id: switch.sapin_noel_1
+    domain: switch
+  mode: single
+- id: '1634136141291'
+  alias: When Air Quality Is Not Great
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.u_s_air_quality_index
+    from: '49'
+    to: '50'
+  condition: []
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    title: Air Quality
+    message: La qualité de l'air est a 50 US AQI (Moderate)
+  mode: single
+- id: '1634428096775'
+  alias: Switch On Kitchen lights On Motion
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 0b325f5e08b1f3fd221e9118a364a800
+    entity_id: binary_sensor.motion_detector_cuisine_5b39c7fe_ias_zone
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.armoire_lights_through_motion
+  mode: single
+- id: '1634477177709'
+  alias: Switch On Kitchen lights On Motion - Kitchen Sensor
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 0b325f5e08b1f3fd221e9118a364a800
+    entity_id: binary_sensor.motion_detector_cuisine_5b39c7fe_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_off
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+  action:
+  - type: turn_on
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+  - wait_for_trigger:
+    - type: no_motion
+      platform: device
+      device_id: 0b325f5e08b1f3fd221e9118a364a800
+      entity_id: binary_sensor.motion_detector_cuisine_5b39c7fe_ias_zone
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+        milliseconds: 0
+    continue_on_timeout: true
+  - type: turn_off
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+  mode: single
+- id: '1634478241280'
+  alias: Grande Chambre - Temperature - Day
+  description: ''
+  trigger:
+  - platform: time
+    at: 09:00:00
+  condition: []
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 12
+    target:
+      entity_id: climate.thermostat_grande_chambre
+  mode: single
+- id: '1634478281790'
+  alias: Grande Chambre - Temperature - Night
+  description: ''
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  condition: []
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 19
+    target:
+      entity_id: climate.thermostat_grande_chambre
+  mode: single
+- id: '1634493193653'
+  alias: Update Sonoff Energy Consumption
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /10
+  condition: []
+  action:
+  - service: sonoff.update_consumption
+  mode: single
+- id: '1634605582965'
+  alias: Energy Cost - First 40
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_number.energy_cost_first_40
+    to: '40'
+  condition: []
+  action:
+  - service: utility_meter.select_tariff
+    target:
+      entity_id: utility_meter.daily_energy
+    data:
+      tariff: after_40
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.energy_current_cost
+    data:
+      value: '{{ states(''input_number.energy_cost_after_40'') | float }}'
+  mode: single
+- id: '1634605973267'
+  alias: Energy Cost - Reset Daily
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition: []
+  action:
+  - service: utility_meter.select_tariff
+    target:
+      entity_id: utility_meter.daily_energy
+    data:
+      tariff: first_40
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.energy_current_cost
+    data:
+      value: '{{ states(''input_number.energy_current_cost'') | float }}'
+  mode: single
+- id: '1634941095239'
+  alias: Open garage door
+  description: ''
+  trigger:
+  - device_id: 63ac805a4ceedacf1a948f9646e05888
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: button
+  condition: []
+  action:
+  - device_id: 707d7ce821abcf34a2633f51d6224e3f
+    domain: cover
+    entity_id: cover.porte_garage_msg100_main_channel
+    type: open
+  mode: single
+- id: '1634941239639'
+  alias: Close garage door
+  description: ''
+  trigger:
+  - device_id: 63ac805a4ceedacf1a948f9646e05888
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: button
+  condition: []
+  action:
+  - device_id: 707d7ce821abcf34a2633f51d6224e3f
+    domain: cover
+    entity_id: cover.porte_garage_msg100_main_channel
+    type: close
+  mode: single
+- id: '1635253820742'
+  alias: Frigate - Disable - Night
+  description: ''
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  condition: []
+  action:
+  - service: camera.disable_motion_detection
+    target:
+      entity_id:
+      - camera.frontdoor
+      - camera.solarium
+  mode: single
+- id: '1635253875927'
+  alias: Frigate - Enable - Day
+  description: ''
+  trigger:
+  - platform: time
+    at: 06:00:00
+  condition: []
+  action:
+  - service: camera.enable_motion_detection
+    target:
+      entity_id:
+      - camera.frontdoor
+      - camera.solarium
+  mode: single
+- id: '1635264442023'
+  alias: Switch On Salon lights On Motion - Evening
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 51c121928944aa2b0546bee20a764740
+    entity_id: binary_sensor.motion_detector_salon_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_off
+    device_id: cd9f9f6967fc45298b85fcca241c5f93
+    entity_id: light.salon_encastre
+    domain: light
+  - condition: time
+    after: '16:00:00'
+    before: 06:00:00
+  action:
+  - type: turn_on
+    device_id: cd9f9f6967fc45298b85fcca241c5f93
+    entity_id: light.salon_encastre
+    domain: light
+    brightness_pct: 20
+  - wait_for_trigger:
+    - type: no_motion
+      platform: device
+      device_id: 51c121928944aa2b0546bee20a764740
+      entity_id: binary_sensor.motion_detector_salon_ias_zone
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 2
+        seconds: 0
+        milliseconds: 0
+    continue_on_timeout: true
+  - type: turn_off
+    device_id: cd9f9f6967fc45298b85fcca241c5f93
+    entity_id: light.salon_encastre
+    domain: light
+  mode: single
+- id: '1635273538439'
+  alias: Switch On Kitchen lights On Motion - Escalier 1er
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: ea8a785054ca0634d7f9bc61c82f777f
+    entity_id: binary_sensor.motion_detector_escalier_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_off
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+  - condition: time
+    after: '17:00:00'
+    before: 06:00:00
+  action:
+  - type: turn_on
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 3
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 6428fd99a866632522dfa426ca53d18d
+    entity_id: switch.cuisine_armoire_1
+    domain: switch
+  mode: single
+- id: '1635340386550'
+  alias: Solarium door open ? Cold outside ? Notify !
+  description: ''
+  use_blueprint:
+    path: home-IoT/reminder_to_close_window.yaml
+    input:
+      contact_sensor: binary_sensor.openclosed_solarium_door_detector_68fa9d23_ias_zone
+      first_timer: 2
+      second_timer: 10
+      temperature: 14
+      device_identifier: 0f59fa93a49df243b354af0136489698
+- id: '1635554379578'
+  alias: Run DOODS
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: image_processing.doods_camera_solarium
+    attribute: total_matches
+    to: '1'
+    from: '0'
+  condition: []
+  action:
+  - device_id: 0f59fa93a49df243b354af0136489698
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: DOODS found a match
+  mode: single
+- id: '1635620796104'
+  alias: Low battery level detection & notification for all battery sensors
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      actions:
+      - device_id: 0f59fa93a49df243b354af0136489698
+        domain: mobile_app
+        type: notify
+        title: Low Battery Warning
+        message: '{{sensors}} have low battery'
+- id: '1635620935814'
+  alias: Medication Reminder
+  description: ''
+  use_blueprint:
+    path: Aohzan/medication_reminder.yaml
+    input:
+      logbook_message_no_answer: No answer time out
+      reminder_time: 09:30:00
+      notify_device: 0f59fa93a49df243b354af0136489698
+      input_boolean: input_boolean.morning_medication
+      logbook_message_skip: Reminder skipped
+- id: '1635772649116'
+  alias: If Solarium Motion Is Detected
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 7c81f6f87e762afda6974eb19e99eb91
+    entity_id: binary_sensor.motion_detector_solarium_door_f3ebc1fe_ias_zone
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: camera.snapshot
+    target:
+      entity_id: camera.camera_solarium
+    data:
+      filename: /config/www/camera_solarium/{{ now().strftime("%Y/%m/%d/%H.%M.%S")}}.jpg
+  - service: notify.mobile_app_iphone_12_pro_ilyas
+    data:
+      message: Detected movement at the back door
+      data:
+        attachment:
+          url: http://192.168.68.113:8123/local/camera_solarium/snapshot_latest.jpg
+  mode: single
+- id: '1635796697144'
+  alias: Mail Notif - Mail Delieveries GIF
+  trigger:
+  - platform: state
+    entity_id: sensor.mail_usps_mail
+  - platform: state
+    entity_id: sensor.mail_packages_in_transit
+  condition:
+  - condition: or
+    conditions:
+    - condition: template
+      value_template: '{{ ((as_timestamp(now()) - as_timestamp(states.sensor.mail_usps_mail.last_changed))
+        < 15 and states(''sensor.mail_usps_mail'')|int > 0) }}'
+    - condition: template
+      value_template: '{{ ((as_timestamp(now()) - as_timestamp(states.sensor.mail_packages_in_transit.last_changed))
+        < 15 and states(''sensor.mail_packages_in_transit'')|int > 0) }}'
+  action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 20
+      milliseconds: 0
+  - service: notify.mobile_app_iphone_pro_ilyas
+    data:
+      title: Mail and Packages
+      message: '{{ states(''sensor.mail_deliveries_message'')}}'
+      data:
+        attachment:
+          url: '{{ states(''sensor.mail_image_url'') }}'
+          hide-thumbnail: false
+        apns_headers:
+          apns-collapse-id: homeassistant-mail-update
+        push:
+          thread-id: homeassistant-mail
+          sound:
+            name: US-EN-Alexa-Mail-Has-Arrived.wav
+            critical: 1
+            volume: 0.2
+  initial_state: true
+- id: '1635799889339'
+  alias: Enable DND When Bureau door is closed
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: 89091c5547bb14556a9940cc92549782
+    entity_id: binary_sensor.openclose_porte_bureau_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: time
+    after: 08:00:00
+    before: '17:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  action:
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.ilyas_dnd_mode
+  mode: single
+- id: '1635800021975'
+  alias: Disable DND When Bureau door is open
+  description: ''
+  trigger:
+  - type: opened
+    platform: device
+    device_id: 89091c5547bb14556a9940cc92549782
+    entity_id: binary_sensor.openclose_porte_bureau_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: time
+    after: 08:00:00
+    before: '17:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    - sat
+    - sun
+  action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.ilyas_dnd_mode
+  mode: single

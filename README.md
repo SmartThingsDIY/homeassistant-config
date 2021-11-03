@@ -24,10 +24,10 @@ I have one tab for every floor in my house and I put all smart devices of the sa
 I also use one tab for all scenes, one for energy details and one for system monitoring.
 Here are some screenshots (please note that these may not be the most updated images, but you should get an idea).
 
-<img src="https://github.com/isbkch/homeassistant-config/blob/master/repo_documents/ha_ss_1.png" alt="Home Assistant dashboard" />
+<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_1.png?raw=true" alt="Home Assistant dashboard" />
 
-<img src="https://github.com/isbkch/homeassistant-config/blob/master/repo_documents/ha_ss_2.png" alt="Home Assistant dashboard" />
+<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_2.png?raw=true" alt="Home Assistant dashboard" />
 
-<img src="https://github.com/isbkch/homeassistant-config/blob/master/repo_documents/ha_ss_3.png" alt="Home Assistant dashboard" />
+<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_3.png?raw=true" alt="Home Assistant dashboard" />
 
-<img src="https://github.com/isbkch/homeassistant-config/blob/master/repo_documents/ha_ss_4.png" alt="Home Assistant dashboard" />
+<img src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/ha_ss_4.png?raw=true" alt="Home Assistant dashboard" />
