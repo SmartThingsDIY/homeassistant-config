@@ -1,0 +1,78 @@
+blueprint:
+  name: Motion-activated Light with sun condition
+  description: Turn on a light when motion is detected and sunset.
+  domain: automation
+  input:
+    motion_entity:
+      name: Motion Sensor
+      selector:
+        entity:
+          domain: binary_sensor
+          device_class: motion
+    light_target:
+      name: Light
+      selector:
+        target:
+          entity:
+            domain: light
+    no_motion_wait:
+      name: Wait time
+      description: Time to leave the light on after last motion is detected.
+      default: 120
+      selector:
+        number:
+          min: 0.0
+          max: 3600.0
+          unit_of_measurement: seconds
+          step: 1.0
+          mode: slider
+    sunset_offset:
+      name: Offset to turn on lights
+      description: Define offset to sunset
+      default: 60
+      selector:
+        number:
+          min: 0.0
+          max: 240.0
+          unit_of_measurement: minutes
+          step: 1.0
+          mode: slider
+    sunrise_offset:
+      name: Offset to turn off lights
+      description: Define offset to sunrise
+      default: 45
+      selector:
+        number:
+          min: 0.0
+          max: 240.0
+          unit_of_measurement: minutes
+          step: 1.0
+          mode: slider
+  source_url: https://community.home-assistant.io/t/turn-light-on-and-off-based-on-detected-motion-with-sun-condition/266013
+mode: restart
+max_exceeded: silent
+trigger:
+  platform: state
+  entity_id: !input 'motion_entity'
+  from: 'off'
+  to: 'on'
+condition:
+- condition: or
+  conditions:
+  - condition: sun
+    after: sunset
+    after_offset: !input 'sunset_offset'
+  - condition: sun
+    before: sunrise
+    before_offset: !input 'sunrise_offset'
+action:
+- service: light.turn_on
+  target: !input 'light_target'
+- wait_for_trigger:
+    platform: state
+    entity_id: !input 'motion_entity'
+    from: 'on'
+    to: 'off'
+- delay: !input 'no_motion_wait'
+- service: light.turn_off
+  target: !input 'light_target'

@@ -1,0 +1,167 @@
+blueprint:
+  name: Advanced medication reminder
+  description: Get advanced notification and history for medication reminder
+  domain: automation
+  input:
+    reminder_time:
+      name: Reminder time
+      description: At what time do you want to be reminded
+      selector:
+        time: {}
+    notify_device:
+      name: Notification
+      description: Device needs to run the official Home Assistant app to receive
+        notifications
+      selector:
+        device:
+          integration: mobile_app
+    input_boolean:
+      name: Dedicated input_boolean
+      description: Create and set here a input_boolean to handle history and state
+        of the automation
+      selector:
+        entity:
+          domain: input_boolean
+    notification_title:
+      name: Notification title (Optional)
+      description: 'Default: Medication reminder'
+      default: Medication reminder!
+    notification_message:
+      name: Notification message (Optional)
+      description: 'Default: It''s time to take your medication'
+      default: It's time to take your medication
+    notification_action_taken:
+      name: 'Notification action: Taken (Optional)'
+      description: 'Default: Taken'
+      default: Taken
+    notification_action_later:
+      name: 'Notification action: Ask later (Optional)'
+      description: 'Default: Ask later'
+      default: Ask later
+    notification_action_skip:
+      name: 'Notification action: Skip (Optional)'
+      description: 'Default: Skip'
+      default: Skip
+    ask_later_wait_time:
+      name: Wait time before next reminder
+      description: Minutes before notify again after a Ask later action.
+      default: 30
+      selector:
+        number:
+          min: 5.0
+          max: 1440.0
+          unit_of_measurement: minutes
+          step: 1.0
+          mode: slider
+    logbook_message_remind:
+      name: Logbook message for remind (Optional)
+      description: 'Default: Reminder sent'
+      default: Reminder sent
+    logbook_message_taken:
+      name: Logbook message for action Taken (Optional)
+      description: 'Default: Medication taken'
+      default: Medication taken
+    logbook_message_later:
+      name: Logbook message for action Ask later (Optional)
+      description: 'Default: Postpone reminder'
+      default: Postpone reminder
+    logbook_message_skip:
+      name: Logbook message for action Skip (Optional)
+      description: 'Default: Reminder skipped'
+      default: Reminder skipped
+    logbook_message_no_answer:
+      name: Logbook message for no action after timeout (Optional)
+      description: 'Default: No answer time out'
+      default: No answer time out
+    optional_action:
+      name: Optional action
+      description: Run an action like notify a speaker at the same time that the mobile
+        notification
+      selector:
+        action: {}
+      default: []
+  source_url: https://raw.githubusercontent.com/Aohzan/hass-blueprints/main/blueprints/medication_reminder.yaml
+trigger:
+- platform: time
+  at: !input 'reminder_time'
+mode: restart
+action:
+- service: input_boolean.turn_off
+  target:
+    entity_id: !input 'input_boolean'
+- alias: Notify until the medication has been take
+  repeat:
+    while:
+    - condition: state
+      entity_id: !input 'input_boolean'
+      state: 'off'
+    sequence:
+    - service: logbook.log
+      data:
+        name: !input 'notification_title'
+        message: !input 'logbook_message_remind'
+        entity_id: !input 'input_boolean'
+    - choose:
+      - conditions: '{{ true }}'
+        sequence: !input 'optional_action'
+    - device_id: !input 'notify_device'
+      domain: mobile_app
+      type: notify
+      title: !input 'notification_title'
+      message: !input 'notification_message'
+      data:
+        actions:
+        - title: !input 'notification_action_taken'
+          action: taken
+        - title: !input 'notification_action_later'
+          action: later
+        - title: !input 'notification_action_skip'
+          action: skip
+        tag: medication-reminder
+    - wait_for_trigger:
+        platform: event
+        event_type: mobile_app_notification_action
+      timeout:
+        minutes: !input 'ask_later_wait_time'
+    - choose:
+      - conditions: '{{ wait.trigger.event.data.action == ''taken'' }}'
+        sequence:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: !input 'input_boolean'
+        - service: logbook.log
+          data:
+            name: !input 'notification_title'
+            message: !input 'logbook_message_taken'
+            entity_id: !input 'input_boolean'
+      - conditions: '{{ wait.trigger.event.data.action == ''later'' }}'
+        sequence:
+        - service: logbook.log
+          data:
+            name: !input 'notification_title'
+            message: !input 'logbook_message_later'
+            entity_id: !input 'input_boolean'
+        - delay:
+            minutes: !input 'ask_later_wait_time'
+      - conditions: '{{ wait.trigger.event.data.action == ''skip'' }}'
+        sequence:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: !input 'input_boolean'
+        - service: logbook.log
+          data:
+            name: !input 'notification_title'
+            message: !input 'logbook_message_skip'
+            entity_id: !input 'input_boolean'
+      default:
+      - device_id: !input 'notify_device'
+        domain: mobile_app
+        type: notify
+        message: clear_notification
+        data:
+          tag: medication-reminder
+      - service: logbook.log
+        data:
+          name: !input 'notification_title'
+          message: !input 'logbook_message_no_answer'
+          entity_id: !input 'input_boolean'

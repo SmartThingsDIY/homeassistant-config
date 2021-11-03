@@ -1,0 +1,84 @@
+blueprint:
+  name: Notification to Close a Window
+  description: Notification to close windows if it is cold outside
+  domain: automation
+  input:
+    contact_sensor:
+      name: Contact Sensor
+      description: The window or door sensor that triggers the automation.
+      selector:
+        entity:
+          domain: binary_sensor
+    first_timer:
+      name: First timer
+      description: The first notification timer (in minutes).
+      default: 10
+      selector:
+        number:
+          min: 1.0
+          step: 1.0
+          max: 60.0
+          mode: slider
+    second_timer:
+      name: Second timer
+      description: The second notification timer (in minutes).
+      default: 15
+      selector:
+        number:
+          min: 1.0
+          step: 1.0
+          max: 60.0
+          mode: slider
+    temperature:
+      name: Temperature
+      description: The outside temperature below which the notification should be
+        sent.
+      default: 20
+      selector:
+        number:
+          min: 0.0
+          step: 1.0
+          max: 25.0
+          mode: slider
+    device_identifier:
+      name: Device to notify
+      description: 'The device to receive the notification; it needs to run the official  Home
+        Assistant app to receive notifications.
+
+        '
+      selector:
+        device:
+          integration: mobile_app
+  source_url: https://github.com/home-IoT/hass-blueprints/blob/main/reminder_to_close_window.yaml
+trigger:
+- platform: state
+  entity_id: !input 'contact_sensor'
+  from: 'off'
+  to: 'on'
+  for:
+    hours: 0
+    minutes: !input 'first_timer'
+    seconds: 0
+- platform: state
+  entity_id: !input 'contact_sensor'
+  from: 'off'
+  to: 'on'
+  for:
+    hours: 0
+    minutes: !input 'second_timer'
+    seconds: 0
+condition:
+- condition: state
+  entity_id: !input 'contact_sensor'
+  state: 'on'
+- condition: numeric_state
+  entity_id: weather.pihome
+  attribute: temperature
+  below: !input 'temperature'
+action:
+- device_id: !input 'device_identifier'
+  domain: mobile_app
+  type: notify
+  message: Time to close {{trigger.to_state.attributes.friendly_name}}.
+  title: Close {{trigger.to_state.attributes.friendly_name}}!
+mode: single
