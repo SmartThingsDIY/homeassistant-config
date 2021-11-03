@@ -53,10 +53,16 @@ I also use the [SONOFF SNZB-04](https://amzn.to/31tMnTd) Door & Window Sensor to
 
 * WIP
 
+## Automation: Turn on/off lights when someone walks in/out of a room
+
+I have put various instances of the [SONOFF SNZB-03](https://amzn.to/31hJCEi) in strategic places around my house to detect movement and turn on/off lights. This one for example is placed at the top of the stairs to detect when someone is walking down towards the kitchen. This movement detection then triggers [this automation](https://github.com/isbkch/homeassistant-config/blob/main/automations.yaml#L910) that switches on the lights in the kitchen, then switches them off again when no movement is detected after 2 minutes.
+
+<img width="450" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/motion_5.jpeg?raw=true">
+
 ## Automation: Cats want to come in
 
 When one of my cats wants to come in, they usually come to the door and start peeking inside trying to get our attention.
-I have put this [Hacbop PIR Motion detector](https://amzn.to/3q2V8xV) right at the edge of the door. When it detects a motion, it triggers an automation that asks my home camera at the back to take a picture and send it to my iPhone.
+I have put this [Hacbop PIR Motion detector](https://amzn.to/3q2V8xV) right at the edge of the door. When it detects a motion, it triggers [this automation](https://github.com/isbkch/homeassistant-config/blob/main/automations.yaml#L544) that asks my home camera at the back to take a picture and send it to my iPhone.
 
 Here is where the PIR motion detector is placed
 
