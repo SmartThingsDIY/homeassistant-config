@@ -20,4 +20,14 @@ I regularly update my configuration files. If you like anything here, Be sure to
 
 ## My Home Assistant dashboard
 
-I moved my entire configuration to Lovelace. Here are some screenshots (please note that these may not be the most updated images, but you should get an idea).
+I have one tab for every floor in my house and I put all smart devices of the same floor in the same tab.
+I also use one tab for all scenes, one for energy details and one for system monitoring.
+Here are some screenshots (please note that these may not be the most updated images, but you should get an idea).
+
+<img src="https://github.com/isbkch/homeassistant-config/blob/master/repo_documents/ha_ss_1.png" alt="Home Assistant dashboard" />
+
+<img src="https://github.com/isbkch/homeassistant-config/blob/master/repo_documents/ha_ss_2.png" alt="Home Assistant dashboard" />
+
+<img src="https://github.com/isbkch/homeassistant-config/blob/master/repo_documents/ha_ss_3.png" alt="Home Assistant dashboard" />
+
+<img src="https://github.com/isbkch/homeassistant-config/blob/master/repo_documents/ha_ss_4.png" alt="Home Assistant dashboard" />
