@@ -554,7 +554,7 @@
   - type: is_not_open
     condition: device
     device_id: ccfe8a8e146aba89bdbd8b7b29e852a5
-    entity_id: binary_sensor.openclosed_solarium_door_detector_68fa9d23_ias_zone
+    entity_id: binary_sensor.openclosed_porte_solarium_68fa9d23_ias_zone
     domain: binary_sensor
   action:
   - service: camera.snapshot
@@ -672,33 +672,6 @@
     type: notify
     title: Alert !
     message: Motion Detected At The Back
-  mode: single
-- id: '1633985463295'
-  alias: Switch Off Kitchen lights If Turned On Through Motion
-  description: ''
-  trigger:
-  - platform: device
-    type: turned_on
-    device_id: 6428fd99a866632522dfa426ca53d18d
-    entity_id: switch.cuisine_armoire_1
-    domain: switch
-    for:
-      hours: 0
-      minutes: 2
-      seconds: 0
-      milliseconds: 0
-  condition:
-  - condition: state
-    entity_id: input_boolean.armoire_lights_through_motion
-    state: 'on'
-  action:
-  - type: turn_off
-    device_id: 6428fd99a866632522dfa426ca53d18d
-    entity_id: switch.cuisine_armoire_1
-    domain: switch
-  - service: input_boolean.turn_off
-    target:
-      entity_id: input_boolean.armoire_lights_through_motion
   mode: single
 - id: '1633986451357'
   alias: Front Door Button - Double Clicked - Night - Switch Everything On
@@ -888,25 +861,6 @@
     title: Air Quality
     message: La qualité de l'air est a 50 US AQI (Moderate)
   mode: single
-- id: '1634428096775'
-  alias: Switch On Kitchen lights On Motion
-  description: ''
-  trigger:
-  - type: motion
-    platform: device
-    device_id: 0b325f5e08b1f3fd221e9118a364a800
-    entity_id: binary_sensor.motion_detector_cuisine_5b39c7fe_ias_zone
-    domain: binary_sensor
-  condition: []
-  action:
-  - type: turn_on
-    device_id: 6428fd99a866632522dfa426ca53d18d
-    entity_id: switch.cuisine_armoire_1
-    domain: switch
-  - service: input_boolean.turn_on
-    target:
-      entity_id: input_boolean.armoire_lights_through_motion
-  mode: single
 - id: '1634477177709'
   alias: Switch On Kitchen lights On Motion - Kitchen Sensor
   description: ''
@@ -949,12 +903,12 @@
   description: ''
   trigger:
   - platform: time
-    at: 09:00:00
+    at: 08:00:00
   condition: []
   action:
   - service: climate.set_temperature
     data:
-      temperature: 12
+      temperature: 15
     target:
       entity_id: climate.thermostat_grande_chambre
   mode: single
@@ -963,7 +917,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '21:00:00'
+    at: '22:00:00'
   condition: []
   action:
   - service: climate.set_temperature
@@ -1053,75 +1007,6 @@
     entity_id: cover.porte_garage_msg100_main_channel
     type: close
   mode: single
-- id: '1635253820742'
-  alias: Frigate - Disable - Night
-  description: ''
-  trigger:
-  - platform: time
-    at: '21:00:00'
-  condition: []
-  action:
-  - service: camera.disable_motion_detection
-    target:
-      entity_id:
-      - camera.frontdoor
-      - camera.solarium
-  mode: single
-- id: '1635253875927'
-  alias: Frigate - Enable - Day
-  description: ''
-  trigger:
-  - platform: time
-    at: 06:00:00
-  condition: []
-  action:
-  - service: camera.enable_motion_detection
-    target:
-      entity_id:
-      - camera.frontdoor
-      - camera.solarium
-  mode: single
-- id: '1635264442023'
-  alias: Switch On Salon lights On Motion - Evening
-  description: ''
-  trigger:
-  - type: motion
-    platform: device
-    device_id: 51c121928944aa2b0546bee20a764740
-    entity_id: binary_sensor.motion_detector_salon_ias_zone
-    domain: binary_sensor
-  condition:
-  - condition: device
-    type: is_off
-    device_id: cd9f9f6967fc45298b85fcca241c5f93
-    entity_id: light.salon_encastre
-    domain: light
-  - condition: time
-    after: '16:00:00'
-    before: 06:00:00
-  action:
-  - type: turn_on
-    device_id: cd9f9f6967fc45298b85fcca241c5f93
-    entity_id: light.salon_encastre
-    domain: light
-    brightness_pct: 20
-  - wait_for_trigger:
-    - type: no_motion
-      platform: device
-      device_id: 51c121928944aa2b0546bee20a764740
-      entity_id: binary_sensor.motion_detector_salon_ias_zone
-      domain: binary_sensor
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
-        milliseconds: 0
-    continue_on_timeout: true
-  - type: turn_off
-    device_id: cd9f9f6967fc45298b85fcca241c5f93
-    entity_id: light.salon_encastre
-    domain: light
-  mode: single
 - id: '1635273538439'
   alias: Switch On Kitchen lights On Motion - Escalier 1er
   description: ''
@@ -1166,23 +1051,6 @@
       second_timer: 10
       temperature: 14
       device_identifier: 0f59fa93a49df243b354af0136489698
-- id: '1635554379578'
-  alias: Run DOODS
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: image_processing.doods_camera_solarium
-    attribute: total_matches
-    to: '1'
-    from: '0'
-  condition: []
-  action:
-  - device_id: 0f59fa93a49df243b354af0136489698
-    domain: mobile_app
-    type: notify
-    title: ''
-    message: DOODS found a match
-  mode: single
 - id: '1635620796104'
   alias: Low battery level detection & notification for all battery sensors
   description: ''
@@ -1221,8 +1089,13 @@
     target:
       entity_id: camera.camera_solarium
     data:
-      filename: /config/www/camera_solarium/{{ now().strftime("%Y/%m/%d/%H.%M.%S")}}.jpg
-  - service: notify.mobile_app_iphone_12_pro_ilyas
+      filename: /config/www/camera_solarium/snapshot_latest.jpg
+  - service: camera.snapshot
+    target:
+      entity_id: camera.camera_solarium
+    data:
+      filename: /config/www/camera_solarium/{{now().strftime("%Y/%m/%d/%H.%M.%S")}}.jpg
+  - service: notify.mobile_app_iphone_pro_ilyas
     data:
       message: Detected movement at the back door
       data:
@@ -1319,4 +1192,55 @@
   - service: input_boolean.turn_off
     target:
       entity_id: input_boolean.ilyas_dnd_mode
+  mode: single
+- id: '1635979750975'
+  alias: Desk Lights - Toggle
+  trigger:
+  - platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionName: toggle_desk_lights
+    context:
+      user_id:
+      - cef6abbd4a91408abcd68fbffa4b9553
+  action:
+  - service: script.desk_lights_toggle
+  initial_state: true
+- id: '1636042555028'
+  alias: Switch On Fire Tablet On Motion - Ilot Sensor
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 51c121928944aa2b0546bee20a764740
+    entity_id: binary_sensor.motion_detector_tablette_ias_zone
+    domain: binary_sensor
+  condition:
+  - condition: device
+    type: is_off
+    device_id: 5b242762a8f9ab28349d5903dac54326
+    entity_id: light.fire_tablet_screen
+    domain: light
+  action:
+  - type: turn_on
+    device_id: 5b242762a8f9ab28349d5903dac54326
+    entity_id: light.fire_tablet_screen
+    domain: light
+    brightness_pct: 70
+  - wait_for_trigger:
+    - type: no_motion
+      platform: device
+      device_id: 51c121928944aa2b0546bee20a764740
+      entity_id: binary_sensor.motion_detector_tablette_ias_zone
+      domain: binary_sensor
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+        milliseconds: 0
+    continue_on_timeout: true
+  - type: turn_off
+    device_id: 5b242762a8f9ab28349d5903dac54326
+    entity_id: light.fire_tablet_screen
+    domain: light
   mode: single
