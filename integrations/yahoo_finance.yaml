@@ -1,0 +1,28 @@
+scan_interval:
+  hours: 4
+include_fifty_day_values: false
+include_post_values: false
+include_pre_values: false
+include_two_hundred_day_values: false
+
+symbols:
+  - symbol: T.TO
+    target_currency: CAD
+  - symbol: MFC.TO
+    target_currency: CAD
+  - symbol: XRE.TO
+    target_currency: CAD
+  - symbol: BDT.TO
+    target_currency: CAD
+  - symbol: CYBR.TO
+    target_currency: CAD
+  - symbol: ESE.V
+    target_currency: CAD
+  - symbol: TGS.V
+    target_currency: CAD
+  - symbol: SX.CN
+    target_currency: CAD
+  - symbol: FCC.V
+    target_currency: CAD
+  - symbol: PNG.V
+    target_currency: CAD

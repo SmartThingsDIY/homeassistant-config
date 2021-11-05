@@ -24,5 +24,6 @@ hilo: !include integrations/hilo.yaml
 sonoff: !include integrations/sonoff.yaml
 utility_meter: !include integrations/utility_meter.yaml
 nissan_leaf: !include integrations/nissan_leaf.yaml
+yahoofinance: !include integrations/yahoo_finance.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
