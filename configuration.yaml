@@ -19,6 +19,7 @@ sensor: !include integrations/sensors.yaml
 recorder: !include integrations/recorder.yaml
 neviweb130: !include integrations/neviweb.yaml
 media_player: !include integrations/media_player.yaml
+garbage_collection: !include integrations/garbage_collection.yaml
 weather: !include integrations/weather.yaml
 hilo: !include integrations/hilo.yaml
 sonoff: !include integrations/sonoff.yaml
