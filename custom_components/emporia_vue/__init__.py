@@ -10,7 +10,7 @@ from pyemvue.enums import Scale
 
 import voluptuous as vol
 
-from homeassistant.config_entries import ConfigEntry
+from homeassistant.config_entries import ConfigEntry, SOURCE_IMPORT
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.core import HomeAssistant
 import homeassistant.helpers.config_validation as cv
