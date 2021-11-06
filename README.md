@@ -24,18 +24,22 @@ I like using this camera because of how easy it is to flash with a custom firmwa
 
 <img width="250" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/security_camera.png?raw=true">
 
-### Lights and Switches
-
-* WIP
-
 ### Motion Detectors
 
 I use 2 brands of ZigBee Motion Sensor to detect movement and trigger automations
-
 * These [SONOFF SNZB-03](https://amzn.to/31hJCEi). They are small and discreet but I found them to be fragile and unreliable.
 * These [Hacbop ZigBee PIR](https://amzn.to/3q2V8xV) that are a little bit more expensive than the [SONOFF SNZB-03](https://amzn.to/31hJCEi) but they are more reliable and have a longer battery life.
 
 I also use the [SONOFF SNZB-04](https://amzn.to/31tMnTd) Door & Window Sensor to detect when a door or window is opened in order to send notifications and/or trigger automation
+
+| SONOFF SNZB-03 | Hacbop ZigBee PIR | SONOFF SNZB-04 |
+| ----------- | ----------- | ----------- |
+| [<img height="250" src="https://m.media-amazon.com/images/I/51grJ93MlxL._AC_SL1000_.jpg">](https://amzn.to/31hJCEi) | [<img height="250" src="https://m.media-amazon.com/images/I/51NhalPh1zL._AC_SL1500_.jpg">](https://amzn.to/3q2V8xV) | [<img height="250" src="https://i5.walmartimages.com/asr/8d9d4cd5-876e-4b3a-bb6a-16c6a8ef514e.87ae5c04b2e27210f64cd5c53755fe50.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff">](https://amzn.to/31tMnTd)
+
+
+### Lights and Switches
+
+* WIP
 
 ### Plugs
 
@@ -45,9 +49,6 @@ I also use the [SONOFF SNZB-04](https://amzn.to/31tMnTd) Door & Window Sensor to
 
 * WIP
 
-### Voice Interaction
-
-* WIP
 
 ### Notifications
 
