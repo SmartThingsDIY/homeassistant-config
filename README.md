@@ -18,11 +18,12 @@ We use Amazon devices to start/stop automations: "Alexa, prepare the gym", to ta
 
 [Yi 1080](https://amzn.to/3w9Ppax) Wireless IP Security Camera.
 
-I like using this camera because of how easy it is to flash with a custom firmware, so all images stays local within my HA instance and nothing goes to the cloud.
+[<img height="250" src="https://m.media-amazon.com/images/I/518Ngm46uuL._AC_SL1500_.jpg">](https://amzn.to/3w9Ppax)
 
-I have it set up to automatically take pictures when movement is detected and send me notifications on my iPhone and Apple watch. Here's a [link to watch](https://www.youtube.com/watch?v=GCHYBxnZK-E) a step by step video on how I set it up.
+I like using this camera because of how easy it is to flash with a custom firmware, so all images stays local within my HA instance and nothing goes to the cloud. I have it set up to automatically take pictures when movement is detected and send me notifications on my iPhone and Apple watch. Here's a [link to watch](https://www.youtube.com/watch?v=GCHYBxnZK-E) a step by step video on how I set it up.
 
 <img width="250" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/security_camera.png?raw=true">
+
 ### Lights and Switches
 
 * WIP
