@@ -1,30 +1,42 @@
 
 default_config:
 stream:
+system_health:
 frontend:
   themes: !include_dir_merge_named themes
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
 homeassistant:
+  currency: CAD
   customize: !include customize.yaml
   media_dirs:
     camera_front_door: /config/www/camera_front_door
     camera_solarium: /config/www/camera_solarium
 # all integrations are under /integrations folder
-camera: !include integrations/cameras.yaml
-group: !include integrations/groups.yaml
+aws: !include integrations/aws.yaml
 automation: !include automations.yaml
-ios: !include integrations/ios.yaml
-sensor: !include integrations/sensors.yaml
-recorder: !include integrations/recorder.yaml
-neviweb130: !include integrations/neviweb.yaml
-media_player: !include integrations/media_player.yaml
+camera: !include integrations/cameras.yaml
 garbage_collection: !include integrations/garbage_collection.yaml
-weather: !include integrations/weather.yaml
+group: !include integrations/groups.yaml
 hilo: !include integrations/hilo.yaml
-sonoff: !include integrations/sonoff.yaml
-utility_meter: !include integrations/utility_meter.yaml
+ios: !include integrations/ios.yaml
+media_player: !include integrations/media_player.yaml
+neviweb130: !include integrations/neviweb.yaml
 nissan_leaf: !include integrations/nissan_leaf.yaml
-yahoofinance: !include integrations/yahoo_finance.yaml
+sensor: !include integrations/sensors.yaml
+utility_meter: !include integrations/utility_meter.yaml
+recorder: !include integrations/recorder.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
+sonoff: !include integrations/sonoff.yaml
+weather: !include integrations/weather.yaml
+yahoofinance: !include integrations/yahoo_finance.yaml
+
+tts:
+  - platform: amazon_polly
+    aws_access_key_id: !secret aws_access_key
+    aws_secret_access_key: !secret aws_secret_access_key
+    region_name: 'us-east-1'
+    text_type: ssml
+    voice: Joanna
+    cache: True
