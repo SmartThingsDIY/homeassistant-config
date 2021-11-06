@@ -8,13 +8,11 @@ I regularly update my configuration files. If you like anything here, Be sure to
 
 ### Amazon Echo Devices
 
+We use Amazon devices to start/stop automations: "Alexa, prepare the gym", to target specific devices: "Alexa, open the master bedroom blinds" and as speakers to listen to music: "Alexa, play Taylor Swift on Spotify". The DOTs are littered around the house, and we use them to communicate rather than shouting at each other.
+
 | Amazon Echo Show | Amazon Echo (3nd Gen) | Echo Dot (3nd Gen) | Echo Dot (4th Gen) | Echo Flex |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | [<img height="150" src="https://m.media-amazon.com/images/I/510lFo8UR0S._AC_SL1000_.jpg">](https://amzn.to/3k7K0fl) | [<img height="150" src="https://m.media-amazon.com/images/I/615DcmT2o5L._AC_SL1000_.jpg">](https://amzn.to/3EQyNHP) | [<img height="100" src="https://m.media-amazon.com/images/I/6182S7MYC2L._AC_SL1000_.jpg">](https://amzn.to/301FVSs) | [<img width="170" src="https://m.media-amazon.com/images/I/71fm-oidY3L._AC_SL1000_.jpg">](https://amzn.to/3BQYfv3) | [<img height="150" src="https://m.media-amazon.com/images/I/41fTockMHSL._AC_SL1000_.jpg">](https://amzn.to/303Ghsk)
-
-### Lights and Switches
-
-* WIP
 
 ### Cameras
 
@@ -25,6 +23,9 @@ I like using this camera because of how easy it is to flash with a custom firmwa
 I have it set up to automatically take pictures when movement is detected and send me notifications on my iPhone and Apple watch. Here's a [link to watch](https://www.youtube.com/watch?v=GCHYBxnZK-E) a step by step video on how I set it up.
 
 <img width="250" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/security_camera.png?raw=true">
+### Lights and Switches
+
+* WIP
 
 ### Motion Detectors
 
