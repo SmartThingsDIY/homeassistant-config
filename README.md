@@ -6,6 +6,12 @@ I regularly update my configuration files. If you like anything here, Be sure to
 
 ## Some of the devices and services that I use with HA
 
+### Amazon Echo Devices
+
+| Amazon Echo Show | Amazon Echo (3nd Gen) | Echo Dot (3nd Gen) | Echo Dot (4th Gen) | Echo Flex |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| [<img height="150" src="https://m.media-amazon.com/images/I/510lFo8UR0S._AC_SL1000_.jpg">](https://amzn.to/3k7K0fl) | [<img height="150" src="https://m.media-amazon.com/images/I/615DcmT2o5L._AC_SL1000_.jpg">](https://amzn.to/3EQyNHP) | [<img height="100" src="https://m.media-amazon.com/images/I/6182S7MYC2L._AC_SL1000_.jpg">](https://amzn.to/301FVSs) | [<img width="170" src="https://m.media-amazon.com/images/I/71fm-oidY3L._AC_SL1000_.jpg">](https://amzn.to/3BQYfv3) | [<img height="150" src="https://m.media-amazon.com/images/I/41fTockMHSL._AC_SL1000_.jpg">](https://amzn.to/303Ghsk)
+
 ### Lights and Switches
 
 * WIP
