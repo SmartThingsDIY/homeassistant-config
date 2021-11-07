@@ -39,11 +39,11 @@ I also use the [SONOFF SNZB-04](https://amzn.to/31tMnTd) Door & Window Sensor to
 
 ### IKEA TRÅDFRI
 
-I shopped a lot for smart, motorized blinds before deciding to get these [IKEA FYRTUR](https://www.ikea.com/ca/en/p/fyrtur-blackout-roller-blind-wireless-battery-operated-gray-00408216/) ones. They do require the use of the [TRADFRI Hub](https://www.ikea.com/ca/en/p/tradfri-gateway-white-00337813/) and mobile app, luckily, the HA integration works pretty well and it's easy to setup.
+I shopped a lot for smart, motorized blinds before deciding to get these [IKEA FYRTUR](https://www.ikea.com/ca/en/p/fyrtur-blackout-roller-blind-wireless-battery-operated-gray-00408216/). They are relatively cheap but have good build quality. They do require, however, the use of the [TRADFRI Hub](https://www.ikea.com/ca/en/p/tradfri-gateway-white-00337813/) and IKEA mobile app, luckily, the [HA integration](https://www.home-assistant.io/integrations/tradfri/) (Zigbee-based) works pretty well and it's easy to setup.
 
-| [SONOFF SNZB-03](https://amzn.to/31hJCEi) | [Hacbop ZigBee PIR](https://amzn.to/3q2V8xV) | [SONOFF SNZB-04](https://amzn.to/31tMnTd) |
-| ----------- | ----------- | ----------- |
-| [<img height="250" src="https://m.media-amazon.com/images/I/51grJ93MlxL._AC_SL1000_.jpg">](https://amzn.to/31hJCEi) | [<img height="250" src="https://m.media-amazon.com/images/I/51NhalPh1zL._AC_SL1500_.jpg">](https://amzn.to/3q2V8xV) | [<img height="250" src="https://i5.walmartimages.com/asr/8d9d4cd5-876e-4b3a-bb6a-16c6a8ef514e.87ae5c04b2e27210f64cd5c53755fe50.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff">](https://amzn.to/31tMnTd)
+| [TRÅDFRI Gateway](https://www.ikea.com/ca/en/p/tradfri-gateway-white-00337813/) | [FYRTUR Blinds](https://www.ikea.com/ca/en/p/fyrtur-blackout-roller-blind-wireless-battery-operated-gray-00408216/) |
+| ----------- | ----------- |
+| [<img height="250" src="https://www.ikea.com/ca/en/images/products/tradfri-gateway-white__0974247_pe812322_s5.jpg?f=xl">](https://www.ikea.com/ca/en/p/tradfri-gateway-white-00337813/) | [<img height="250" src="https://www.ikea.com/ca/en/images/products/fyrtur-blackout-roller-blind-wireless-battery-operated-gray__0595177_pe675958_s5.jpg?f=xl">](https://www.ikea.com/ca/en/p/fyrtur-blackout-roller-blind-wireless-battery-operated-gray-00408216/) |
 
 ### Lights and Switches
 
