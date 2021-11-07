@@ -16,5 +16,5 @@ logs:
   homeassistant.helpers.script: info
   homeassistant.helpers.entity: critical
   homeassistant.loader: warn
-  pubnub: critical
+  custom_components.sensor.authenticated: debug
   root: warn
