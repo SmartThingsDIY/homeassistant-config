@@ -1,6 +1,6 @@
 # Home Assistant Configuration
 
-Here's my [Home Assistant](https://home-assistant.io/) configuration. I have installed HA on a [Lenovo ThinkCentre M93P Tiny](https://amzn.to/3bCllLi/) with an Intel Dual-Core i5-4570T Processor up to 3.60 GHz, 8GB RAM and 240GB SSD. I am currently running HA OS directly on the NUC and use a [ConBee II USB](https://amzn.to/3EF6LPn) as Zigbee Gateway
+Here's my [Home Assistant](https://home-assistant.io/) configuration. I have installed HA on a [Lenovo ThinkCentre M93P Tiny](https://amzn.to/3bCllLi/) with an Intel Dual-Core i5-4570T Processor up to 3.60 GHz, 8GB RAM and 240GB SSD. I am currently running [HA OS](https://github.com/home-assistant/operating-system) directly on the NUC and use a [ConBee II USB](https://amzn.to/3EF6LPn) as Zigbee Gateway
 
 I regularly update my configuration files. If you like anything here, Be sure to :star2: my repo!
 
@@ -27,6 +27,7 @@ I like using this camera because of how easy it is to flash with a custom firmwa
 ### Motion Detectors
 
 I use 2 brands of ZigBee Motion Sensor to detect movement and trigger automations
+
 * These [SONOFF SNZB-03](https://amzn.to/31hJCEi). They are small and discreet but I found them to be fragile and unreliable.
 * These [Hacbop ZigBee PIR](https://amzn.to/3q2V8xV) that are a little bit more expensive than the [SONOFF SNZB-03](https://amzn.to/31hJCEi) but they are more reliable and have a longer battery life.
 
@@ -45,26 +46,12 @@ I shopped a lot for smart, motorized blinds before deciding to get these [IKEA F
 | ----------- | ----------- |
 | [<img height="250" src="https://www.ikea.com/ca/en/images/products/tradfri-gateway-white__0974247_pe812322_s5.jpg?f=xl">](https://www.ikea.com/ca/en/p/tradfri-gateway-white-00337813/) | [<img height="250" src="https://www.ikea.com/ca/en/images/products/fyrtur-blackout-roller-blind-wireless-battery-operated-gray__0595177_pe675958_s5.jpg?f=xl">](https://www.ikea.com/ca/en/p/fyrtur-blackout-roller-blind-wireless-battery-operated-gray-00408216/) |
 
-### Lights and Switches
+### Plugs & Energy Consumption
 
-* WIP
+I like my plugs to monitor energy consumption as well. This is the main reason I go with [Emporia](https://amzn.to/307EHWn). They are very cheap (4 plugs for $69 CAD), and easy to connect with HA through the [Emporia Vue integration](https://github.com/magico13/ha-emporia-vue). Upon the first connection, the integration creates multiple sensors showing energy consumption per minute, day and month. And that's all I need to track usage and build my energy dashboards.
 
-### Plugs
+<img width="500" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/plug_1.png?raw=true" /> <img height="260" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/plug_2.png?raw=true" />
 
-* WIP
-
-### Buttons
-
-* WIP
-
-
-### Notifications
-
-* WIP
-
-### Weather and Climate related
-
-* WIP
 
 ### DIY (Arduino + ESP32 + ESP8266)
 
