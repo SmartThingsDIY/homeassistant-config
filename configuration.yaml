@@ -30,7 +30,6 @@ scene: !include scenes.yaml
 script: !include scripts.yaml
 sonoff: !include integrations/sonoff.yaml
 weather: !include integrations/weather.yaml
-yahoofinance: !include integrations/yahoo_finance.yaml
 
 tts:
   - platform: amazon_polly
