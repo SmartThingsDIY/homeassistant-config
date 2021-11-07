@@ -10,7 +10,7 @@ I regularly update my configuration files. If you like anything here, Be sure to
 
 We use Amazon devices to start/stop automations: "Alexa, prepare the gym", to target specific devices: "Alexa, open the master bedroom blinds" and as speakers to listen to music: "Alexa, play Taylor Swift on Spotify". The DOTs are littered around the house, and we use them to communicate rather than shouting at each other.
 
-| Amazon Echo Show | Amazon Echo (3nd Gen) | Echo Dot (3nd Gen) | Echo Dot (4th Gen) | Echo Flex |
+| [Amazon Echo Show](https://amzn.to/3k7K0fl) | [Amazon Echo (3nd Gen)](https://amzn.to/3EQyNHP) | [Echo Dot (3nd Gen)](https://amzn.to/301FVSs) | [Echo Dot (4th Gen)](https://amzn.to/3BQYfv3) | [Echo Flex](https://amzn.to/303Ghsk) |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | [<img height="150" src="https://m.media-amazon.com/images/I/510lFo8UR0S._AC_SL1000_.jpg">](https://amzn.to/3k7K0fl) | [<img height="150" src="https://m.media-amazon.com/images/I/615DcmT2o5L._AC_SL1000_.jpg">](https://amzn.to/3EQyNHP) | [<img height="100" src="https://m.media-amazon.com/images/I/6182S7MYC2L._AC_SL1000_.jpg">](https://amzn.to/301FVSs) | [<img width="170" src="https://m.media-amazon.com/images/I/71fm-oidY3L._AC_SL1000_.jpg">](https://amzn.to/3BQYfv3) | [<img height="150" src="https://m.media-amazon.com/images/I/41fTockMHSL._AC_SL1000_.jpg">](https://amzn.to/303Ghsk)
 
@@ -32,10 +32,18 @@ I use 2 brands of ZigBee Motion Sensor to detect movement and trigger automation
 
 I also use the [SONOFF SNZB-04](https://amzn.to/31tMnTd) Door & Window Sensor to detect when a door or window is opened in order to send notifications and/or trigger automation
 
-| SONOFF SNZB-03 | Hacbop ZigBee PIR | SONOFF SNZB-04 |
+| [SONOFF SNZB-03](https://amzn.to/31hJCEi) | [Hacbop ZigBee PIR](https://amzn.to/3q2V8xV) | [SONOFF SNZB-04](https://amzn.to/31tMnTd) |
 | ----------- | ----------- | ----------- |
 | [<img height="250" src="https://m.media-amazon.com/images/I/51grJ93MlxL._AC_SL1000_.jpg">](https://amzn.to/31hJCEi) | [<img height="250" src="https://m.media-amazon.com/images/I/51NhalPh1zL._AC_SL1500_.jpg">](https://amzn.to/3q2V8xV) | [<img height="250" src="https://i5.walmartimages.com/asr/8d9d4cd5-876e-4b3a-bb6a-16c6a8ef514e.87ae5c04b2e27210f64cd5c53755fe50.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff">](https://amzn.to/31tMnTd)
 
+
+### IKEA TRÅDFRI
+
+I shopped a lot for smart, motorized blinds before deciding to get these [IKEA FYRTUR](https://www.ikea.com/ca/en/p/fyrtur-blackout-roller-blind-wireless-battery-operated-gray-00408216/) ones. They do require the use of the [TRADFRI Hub](https://www.ikea.com/ca/en/p/tradfri-gateway-white-00337813/) and mobile app, luckily, the HA integration works pretty well and it's easy to setup.
+
+| [SONOFF SNZB-03](https://amzn.to/31hJCEi) | [Hacbop ZigBee PIR](https://amzn.to/3q2V8xV) | [SONOFF SNZB-04](https://amzn.to/31tMnTd) |
+| ----------- | ----------- | ----------- |
+| [<img height="250" src="https://m.media-amazon.com/images/I/51grJ93MlxL._AC_SL1000_.jpg">](https://amzn.to/31hJCEi) | [<img height="250" src="https://m.media-amazon.com/images/I/51NhalPh1zL._AC_SL1500_.jpg">](https://amzn.to/3q2V8xV) | [<img height="250" src="https://i5.walmartimages.com/asr/8d9d4cd5-876e-4b3a-bb6a-16c6a8ef514e.87ae5c04b2e27210f64cd5c53755fe50.jpeg?odnHeight=450&odnWidth=450&odnBg=ffffff">](https://amzn.to/31tMnTd)
 
 ### Lights and Switches
 
