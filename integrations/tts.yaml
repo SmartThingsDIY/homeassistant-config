@@ -5,3 +5,4 @@
   text_type: ssml
   voice: Kendra
   cache: True
+  engine: neural
