@@ -1,5 +1,5 @@
 sensors:
-- name: "Dechets" # Bi-weekly (even weeks) on Wednesday. No collection on Christmas, added extra collection on the 27th
+- name: "waste pickup" # Bi-weekly (even weeks) on Wednesday. No collection on Christmas, added extra collection on the 27th
   frequency: "even-weeks"
   collection_days: "wed"
   expire_after: "12:00"
@@ -7,23 +7,23 @@ sensors:
     - "2021-12-22"
   include_dates:
     - "2021-12-8"
-- name: "Matieres organique" # Bi-weekly (odd weeks) on Thursday. Between March and November
+- name: "organic waste pickup" # Bi-weekly (odd weeks) on Thursday. Between March and November
   frequency: "odd-weeks"
   collection_days: "wed"
   include_dates:
     - "2021-12-29"
-- name: "Gros rebuts" # Second Monday each month
+- name: "large items pickup" # Second Monday each month
   frequency: "monthly"
   collection_days: "mon"
   weekday_order_number:
     - 2
-- name: "Branches" # third Monday each month only, from April to November
+- name: "Branch pickup" # third Monday each month only, from April to November
   frequency: "monthly"
   collection_days: "mon"
   weekday_order_number:
     - 3
   first_month: "apr"
   last_month: "nov"
-- name: "Sapin Noel"
+- name: "christmas tree pickup"
   frequency: "annual"
   date: "01/04"
