@@ -1,0 +1,9 @@
+# Thermostat sous-sol
+- platform: midea_ac
+  host: 192.168.68.157
+  id: 32985348868036
+
+  # Thermostat escalier 1er
+- platform: midea_ac
+  host: 192.168.68.155
+  id: 32985348868030

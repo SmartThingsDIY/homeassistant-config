@@ -16,6 +16,7 @@ homeassistant:
 aws: !include integrations/aws.yaml
 automation: !include automations.yaml
 camera: !include integrations/cameras.yaml
+climate: !include integrations/climate.yaml
 garbage_collection: !include integrations/garbage_collection.yaml
 group: !include integrations/groups.yaml
 hilo: !include integrations/hilo.yaml
