@@ -5,18 +5,12 @@ system_health:
 frontend:
   themes: !include_dir_merge_named themes
 
-# Configure a default setup of Home Assistant (frontend, api, etc)
-homeassistant:
-  currency: CAD
-  customize: !include customize.yaml
-  media_dirs:
-    camera_front_door: /config/www/camera_front_door
-    camera_solarium: /config/www/camera_solarium
 # all integrations are under /integrations folder
 aws: !include integrations/aws.yaml
 automation: !include automations.yaml
 camera: !include integrations/cameras.yaml
 climate: !include integrations/climate.yaml
+homeassistant: !include integrations/home_assistant.yaml
 garbage_collection: !include integrations/garbage_collection.yaml
 group: !include integrations/groups.yaml
 hilo: !include integrations/hilo.yaml

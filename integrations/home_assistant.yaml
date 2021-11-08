@@ -1,0 +1,5 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+customize: !include ../customize.yaml
+media_dirs:
+  camera_front_door: /config/www/camera_front_door
+  camera_solarium: /config/www/camera_solarium
