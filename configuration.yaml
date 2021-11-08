@@ -29,13 +29,5 @@ recorder: !include integrations/recorder.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
 sonoff: !include integrations/sonoff.yaml
+tts: !include integrations/tts.yaml
 weather: !include integrations/weather.yaml
-
-tts:
-  - platform: amazon_polly
-    aws_access_key_id: !secret aws_access_key
-    aws_secret_access_key: !secret aws_secret_access_key
-    region_name: 'us-east-1'
-    text_type: ssml
-    voice: Joanna
-    cache: True
