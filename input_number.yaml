@@ -1,0 +1,29 @@
+#################################################################
+## Input_number
+#################################################################
+
+energy_access_fee:
+  name: energy_access_fee
+  icon: mdi:home-lightning-bolt-outline
+  min: 0
+  max: 1
+  step: 0.00001
+energy_cost_after_40:
+  name: energy_cost_after_40
+  icon: mdi:home-lightning-bolt-outline
+  min: 0
+  max: 1
+  step: 0.00001
+energy_cost_first_40:
+  name: energy_cost_first_40
+  icon: mdi:home-lightning-bolt-outline
+  min: 0
+  max: 1
+  step: 0.00001
+energy_current_cost:
+  name: energy_current_cost
+  icon: mdi:currency-usd
+  min: 0
+  max: 1
+  step: 0.00001
+  unit_of_measurement: '/kWh'

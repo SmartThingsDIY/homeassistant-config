@@ -1,0 +1,19 @@
+#################################################################
+## Input_boolean
+#################################################################
+
+motion_detected:
+  name: motion_detected
+  icon: mdi:motion-sensor
+
+morning_medication:
+  name: morning_medication
+  icon: mdi:pill
+
+ilyas_dnd_mode:
+  name: ilyas_dnd_mode
+  icon: mdi:calendar-remove
+
+away_mode:
+  name: away_mode
+  icon: mdi:lock

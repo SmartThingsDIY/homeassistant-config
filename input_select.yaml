@@ -1,0 +1,12 @@
+#################################################################
+## Input_select
+#################################################################
+
+alexa_message_target:
+  name: Alexa message target
+  options:
+    - media_player.alexa_cuisine
+    - media_player.grande_chambre
+    - media_player.alexa_sous_sol
+  initial: media_player.alexa_cuisine
+  icon: mdi:speaker-wireless
