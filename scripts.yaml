@@ -1,75 +1,92 @@
 desk_lights_toggle:
   alias: Desk Lights - Toggle
   sequence:
-    - type: toggle
-      device_id: ace5c4f968dd804599266a0c2566a3d3
-      entity_id: light.elgato_key_light
-      domain: light
-    - type: toggle
-      device_id: aabae6131256209db758e19b4cb64932
-      entity_id: light.monitor_lights
-      domain: light
-  mode: single
-
-lock_all_doors:
-  alias: Lock all doors
-  sequence:
-    - device_id: 9c0c795a163111eb8a34f76504b51721
-      domain: cover
-      entity_id: cover.porte_du_garage_msg100_main_channel
-      type: close
-    - device_id: fe8d51f614d311ebb0fb652b85a5bf0f
-      domain: lock
-      entity_id: lock.porte_d_apos_entree
-      type: lock
+  - type: toggle
+    device_id: ace5c4f968dd804599266a0c2566a3d3
+    entity_id: light.elgato_key_light
+    domain: light
+  - type: toggle
+    device_id: aabae6131256209db758e19b4cb64932
+    entity_id: light.monitor_lights
+    domain: light
   mode: single
 start_netflix:
   sequence:
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.fire_tv_salon
-        source: com.netflix.ninja
+  - service: media_player.select_source
+    data:
       entity_id: media_player.fire_tv_salon
+      source: com.netflix.ninja
+    entity_id: media_player.fire_tv_salon
   mode: single
   alias: Start Netflix
   icon: mdi:netflix
 stop_netflix:
   sequence:
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.fire_tv_salon
-        source: "!com.netflix.ninja"
+  - service: media_player.select_source
+    data:
       entity_id: media_player.fire_tv_salon
+      source: '!com.netflix.ninja'
+    entity_id: media_player.fire_tv_salon
   mode: single
   alias: Stop Netflix
   icon: mdi:netflix
 thermopompe_salon_power:
   sequence:
-    - service: remote.send_command
-      target:
-        device_id: 26377d54271e1a009bd89c17c8353726
-      data:
-        device: ThermoPompe Salon
-        command: Power
+  - service: remote.send_command
+    target:
+      device_id: 26377d54271e1a009bd89c17c8353726
+    data:
+      device: ThermoPompe Salon
+      command: Power
   mode: single
   alias: ThermoPompe Salon - Power
 thermopompe_salon_temp_up:
   alias: ThermoPompe Salon - Temp Up
   sequence:
-    - service: remote.send_command
-      target:
-        device_id: 26377d54271e1a009bd89c17c8353726
-      data:
-        device: ThermoPompe Salon
-        command: Temp Up
+  - service: remote.send_command
+    target:
+      device_id: 26377d54271e1a009bd89c17c8353726
+    data:
+      device: ThermoPompe Salon
+      command: Temp Up
   mode: single
 thermopompe_salon_temp_down:
   alias: ThermoPompe Salon - Temp Down
   sequence:
-    - service: remote.send_command
-      target:
-        device_id: 26377d54271e1a009bd89c17c8353726
-      data:
-        device: ThermoPompe Salon
-        command: Temp Down
+  - service: remote.send_command
+    target:
+      device_id: 26377d54271e1a009bd89c17c8353726
+    data:
+      device: ThermoPompe Salon
+      command: Temp Down
   mode: single
+instant_message:
+  alias: Alexa instant message
+  sequence:
+  - service: notify.alexa_media
+    data_template:
+      target: '{{ states(''input_select.alexa_message_target'') }}'
+      message: '{{ states(''input_text.alexa_message_text'') }}'
+      data:
+        type: announce
+  mode: single
+  icon: mdi:bullhorn
+camera_cabanon_take_snapshot:
+  alias: Camera Cabanon - Take Snapshot
+  sequence:
+  - service: blink.trigger_camera
+    target:
+      entity_id: camera.blink_outdoor_back_camera
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: blink.blink_update
+  - service: camera.snapshot
+    target:
+      entity_id: camera.blink_outdoor_back_camera
+    data:
+      filename: /config/www/camera_cabanon/snapshot_motion_latest.jpg
+  mode: single
+  icon: mdi:camera
