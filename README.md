@@ -33,7 +33,9 @@ I like using this camera because of how easy it is to flash with a [custom firmw
 I like using this camera kit because it's wireless, weather-resistant, HD, with two-year battery life and has motion detection.
 because it's powered via battery, I couldn't afford it streaming live all the time- Although I might end up getting [this solar panel](https://amzn.to/30YdaqA) model for it. For now, I have it set up to refresh automatically when I click the image picture in my dashboard using [this script](https://github.com/isbkch/homeassistant-config/blob/main/scripts.yaml#L74).
 
-<img width="450" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/camera_blink_2.png?raw=true">
+My script puts the picture under the folder `/config/www/camera_cabanon/` so make sure the folder is created beforehand. I also like to use the `media browser` to browse the pictures, so make sure you have declared the folder like [I did here](https://github.com/isbkch/homeassistant-config/blob/main/integrations/home_assistant.yaml#L6).
+
+<img width="600" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/camera_blink_2.png?raw=true">
 
 ### Motion Detectors
 
