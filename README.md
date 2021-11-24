@@ -14,15 +14,26 @@ We use Amazon devices to start/stop automations: "Alexa, prepare the gym", to ta
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | [<img height="150" src="https://m.media-amazon.com/images/I/510lFo8UR0S._AC_SL1000_.jpg">](https://amzn.to/3k7K0fl) | [<img height="150" src="https://m.media-amazon.com/images/I/615DcmT2o5L._AC_SL1000_.jpg">](https://amzn.to/3EQyNHP) | [<img height="100" src="https://m.media-amazon.com/images/I/6182S7MYC2L._AC_SL1000_.jpg">](https://amzn.to/301FVSs) | [<img width="170" src="https://m.media-amazon.com/images/I/71fm-oidY3L._AC_SL1000_.jpg">](https://amzn.to/3BQYfv3) | [<img height="150" src="https://m.media-amazon.com/images/I/41fTockMHSL._AC_SL1000_.jpg">](https://amzn.to/303Ghsk)
 
-### Cameras
+### Indoor Cameras
 
-[Yi 1080](https://amzn.to/3w9Ppax) Wireless IP Security Camera.
+[Yi 1080](https://amzn.to/3w9Ppax) Wireless IP Security Indoor Camera.
 
 [<img height="250" src="https://m.media-amazon.com/images/I/518Ngm46uuL._AC_SL1500_.jpg">](https://amzn.to/3w9Ppax)
 
-I like using this camera because of how easy it is to flash with a custom firmware, so all images stays local within my HA instance and nothing goes to the cloud. I have it set up to automatically take pictures when movement is detected and send me notifications on my iPhone and Apple watch. Here's a [link to watch](https://www.youtube.com/watch?v=GCHYBxnZK-E) a step by step video on how I set it up.
+I like using this camera because of how easy it is to flash with a [custom firmware](https://github.com/roleoroleo/yi-hack-Allwinner) making sure all images stays local within my HA instance and nothing goes to the cloud. I have it set up to automatically take pictures when movement is detected and send me notifications on my iPhone and Apple watch. Here's a [link to watch](https://www.youtube.com/watch?v=GCHYBxnZK-E) a step by step video on how I set it up.
 
 <img width="250" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/security_camera.png?raw=true">
+
+### Outdoor Cameras
+
+[Blink Outdoor](https://amzn.to/3CIKj6M) Wireless, Weather-resistant & Battery Powered.
+
+[<img height="250" src="https://m.media-amazon.com/images/I/61TRYGIDWkL._SL1000_.jpg">](https://amzn.to/3CIKj6M)
+
+I like using this camera kit because it's wireless, weather-resistant, HD, with two-year battery life and has motion detection.
+because it's powered via battery, I couldn't afford it streaming live all the time- Although I might end up getting [this solar panel](https://amzn.to/30YdaqA) model for it. For now, I have it set up to refresh automatically when I click the image picture in my dashboard using [this script](https://github.com/isbkch/homeassistant-config/blob/main/scripts.yaml#L74).
+
+<img width="450" src="https://github.com/isbkch/homeassistant-config/blob/main/repo_documents/camera_blink_2.png?raw=true">
 
 ### Motion Detectors
 
