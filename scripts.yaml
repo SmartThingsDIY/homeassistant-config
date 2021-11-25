@@ -90,3 +90,23 @@ camera_cabanon_take_snapshot:
       filename: /config/www/camera_cabanon/snapshot_motion_latest.jpg
   mode: single
   icon: mdi:camera
+camera_driveway_take_snapshot:
+  alias: Camera Driveway - Take Snapshot
+  sequence:
+  - service: blink.trigger_camera
+    target:
+      entity_id: camera.blink_outdoor_side_camera
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: blink.blink_update
+  - service: camera.snapshot
+    target:
+      entity_id:
+      - camera.blink_outdoor_side_camera
+    data:
+      filename: /config/www/camera_driveway/snapshot_motion_latest.jpg
+  mode: single
+  icon: mdi:camera
