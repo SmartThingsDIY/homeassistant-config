@@ -1,4 +1,9 @@
 - platform: androidtv
-  name: FireTV
-  host: !secret fire_tv_ip
+  name: SamsungTV
+  host: !secret samsung_tv_ip
   device_class: firetv
+
+- platform: androidtv
+  name: SonyTV
+  host: !secret sony_tv_ip
+  device_class: androidtv
