@@ -1,14 +1,10 @@
-
 default_config:
 stream:
 system_health:
 frontend:
   themes: !include_dir_merge_named themes
 
-# all integrations are under /integrations folder
-aws: !include integrations/aws.yaml
 automation: !include automations.yaml
-camera: !include integrations/cameras.yaml
 climate: !include integrations/climate.yaml
 homeassistant: !include integrations/home_assistant.yaml
 garbage_collection: !include integrations/garbage_collection.yaml
@@ -17,14 +13,12 @@ hilo: !include integrations/hilo.yaml
 ios: !include integrations/ios.yaml
 media_player: !include integrations/media_player.yaml
 neviweb130: !include integrations/neviweb.yaml
-nissan_leaf: !include integrations/nissan_leaf.yaml
 sensor: !include integrations/sensors.yaml
 utility_meter: !include integrations/utility_meter.yaml
 recorder: !include integrations/recorder.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
 sonoff: !include integrations/sonoff.yaml
-# tts: !include integrations/tts.yaml
 weather: !include integrations/weather.yaml
 
 ## Inputs
@@ -32,3 +26,11 @@ input_select: !include input_select.yaml
 input_text: !include input_text.yaml
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
+# aws: !include integrations/aws.yaml
+# tts: !include integrations/tts.yaml
+# image_processing: !include integrations/image_processing.yaml
+# logger: !include logger.yaml
+# counter: !include counter.yaml
+# shell_command: !include shell_commands.yaml
+# nissan_leaf: !include integrations/nissan_leaf.yaml
+# camera: !include integrations/cameras.yaml
