@@ -1,6 +1,7 @@
 default: warning
 logs:
   hacs: error
+  custom_components.hilo: debug
   homeassistant.core: error
   homeassistant.config_entries: error
   homeassistant.components.automation: warn

@@ -1,2 +1,4 @@
 username: !secret hilo_username
 password: !secret hilo_password
+generate_energy_meters: true
+hq_plan_name: rate d

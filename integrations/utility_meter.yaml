@@ -1,7 +1,5 @@
 daily_energy:
-  source: sensor.total_energy_consumed
+  # source: sensor.total_energy_consumed
+  source: sensor.hilo_energy_total_daily_medium
   name: Daily Energy
   cycle: daily
-  tariffs:
-    - first_40
-    - after_40
