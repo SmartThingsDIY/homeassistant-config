@@ -19,7 +19,7 @@ recorder: !include integrations/recorder.yaml
 scene: !include scenes.yaml
 script: !include scripts.yaml
 sonoff: !include integrations/sonoff.yaml
-weather: !include integrations/weather.yaml
+tradfri: !include integrations/tradfri.yaml
 
 ## Inputs
 input_select: !include input_select.yaml
@@ -34,3 +34,4 @@ input_boolean: !include input_boolean.yaml
 # shell_command: !include shell_commands.yaml
 # nissan_leaf: !include integrations/nissan_leaf.yaml
 # camera: !include integrations/cameras.yaml
+# weather: !include integrations/weather.yaml
