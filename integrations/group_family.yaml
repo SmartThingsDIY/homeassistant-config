@@ -1,5 +1,0 @@
-- platform: group
-  name: Family
-  entities:
-    - person.ilyas
-    - person.noemie
