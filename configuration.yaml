@@ -9,7 +9,7 @@ climate: !include integrations/climate.yaml
 homeassistant: !include integrations/home_assistant.yaml
 garbage_collection: !include integrations/garbage_collection.yaml
 group: !include integrations/groups.yaml
-hilo: !include integrations/hilo.yaml
+# hilo: !include integrations/hilo.yaml
 ios: !include integrations/ios.yaml
 media_player: !include integrations/media_player.yaml
 neviweb130: !include integrations/neviweb.yaml
