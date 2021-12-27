@@ -4,11 +4,13 @@ Support for Neviweb switch connected via GT130 ZigBee.
 model 2506 = load controller device, RM3250ZB, 50A
 model 2610 = wall outlet, SP2610ZB
 model 2600 = portable plug, SP2600ZB
-model xxx = VA4201WZ, sedna valve 1 inch
+model 3150 = VA4201WZ, sedna valve 1 inch
 model 3150 = VA4200WZ, sedna valve 3/4 inch via wifi
 model 3151 = VA4200ZB, sedna valve 3/4 inch via GT130, zigbee
-model xxx = VA4220WZ, sedna 2e gen 3/4 inch
-model xxx = VA4221WZ, sedna 2e gen 1 inch
+model 3150 = VA4220WZ, sedna 2e gen 3/4 inch
+model 3150 = VA4220WF, sedna 2e generation 3/4 inch, wifi
+model 3150 = VA4221WZ, sedna 2e gen 1 inch
+model 3150 = VA4221WF, sedna 2e generation 1 inch, wifi
 For more details about this platform, please refer to the documentation at  
 https://www.sinopetech.com/en/support/#api
 """
@@ -273,16 +275,19 @@ class Neviweb130Switch(SwitchEntity):
                     self._temp_alarm = device_data[ATTR_TEMP_ALARM]
                     self._battery_voltage = device_data[ATTR_BATTERY_VOLTAGE]
                     self._battery_status = device_data[ATTR_BATTERY_STATUS]
-                    self._valve_closure = device_data[ATTR_VALVE_CLOSURE]["source"]
                     self._battery_alert = device_data[ATTR_BATT_ALERT]
+                    if ATTR_VALVE_CLOSURE in device_data:
+                        self._valve_closure = device_data[ATTR_VALVE_CLOSURE]["source"]
                 elif self._is_zb_valve:
                     self._valve_status = STATE_VALVE_STATUS if \
                         device_data[ATTR_ONOFF] == "on" else "closed"
                     self._onOff = device_data[ATTR_ONOFF]
                     self._battery_voltage = device_data[ATTR_BATTERY_VOLTAGE]
                     self._battery_status = device_data[ATTR_BATTERY_STATUS]
-#                    self._battery_alert = device_data[ATTR_BATT_ALERT]
-#                    self._temp_alert = device_data[ATTR_TEMP_ALERT]
+                    if ATTR_BATT_ALERT in device_data:
+                        self._battery_alert = device_data[ATTR_BATT_ALERT]
+                    if ATTR_TEMP_ALERT in device_data:
+                        self._temp_alert = device_data[ATTR_TEMP_ALERT]
                 elif self._is_load: #for is_load
                     self._current_power_w = device_data[ATTR_WATTAGE_INSTANT]
                     self._wattage = device_data[ATTR_WATTAGE]
@@ -300,10 +305,18 @@ class Neviweb130Switch(SwitchEntity):
                 return
             _LOGGER.warning("Error in reading device %s: (%s)", self._name, device_data)
             return
-        _LOGGER.warning("Cannot update %s: %s", self._name, device_data)
         if device_data["error"]["code"] == "USRSESSEXP":
             _LOGGER.warning("Session expired... reconnecting...")
             self._client.reconnect()
+        elif device_data["error"]["code"] == "ACCSESSEXC":
+            _LOGGER.warning("Maximun session number reached...Close other connections and try again.")
+            self._client.reconnect()
+        elif device_data["error"]["code"] == "DVCACTNSPTD":
+            _LOGGER.warning("Device action not supported... Report to maintainer.")
+        elif device_data["error"]["code"] == "DVCCOMMTO":
+            _LOGGER.warning("Device Communication Timeout... The device did not respond to the server within the prescribed delay.")
+        else:
+            _LOGGER.warning("Unknown error for %s: %s... Report to maintainer.", self._name, device_data)
 
     @property
     def unique_id(self):
@@ -363,7 +376,7 @@ class Neviweb130Switch(SwitchEntity):
         return self._cur_temp
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         """Return the state attributes."""
         data = {}
         if self._is_load:
@@ -417,13 +430,12 @@ class Neviweb130Switch(SwitchEntity):
         """Lock or unlock device's keypad, lock = locked, unlock = unlocked"""
         lock = value["lock"]
         entity = value["id"]
-        key = "off"
         if lock == "locked":
             lock_name = "Locked"
         else:
             lock_name = "Unlocked"
         self._client.set_keypad_lock(
-            entity, lock, key)
+            entity, lock)
         self._keypad = lock_name
 
     def set_timer(self, value):

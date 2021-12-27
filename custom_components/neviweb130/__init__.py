@@ -26,6 +26,7 @@ from .const import (
     ATTR_ROOM_SETPOINT_MAX,
     ATTR_KEYPAD,
     ATTR_BACKLIGHT,
+    ATTR_BACKLIGHT_AUTO_DIM,
     ATTR_WIFI_DISPLAY2,
     ATTR_TIMER,
     ATTR_TIME,
@@ -42,9 +43,12 @@ from .const import (
     ATTR_MOTOR_TARGET,
     ATTR_FLOOR_AIR_LIMIT,
     ATTR_SIGNATURE,
+    ATTR_EARLY_START,
+    ATTR_FLOOR_MODE,
+    ATTR_PHASE_CONTROL,
 )
 
-VERSION = '0.6.1'
+VERSION = '0.9.1'
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -310,9 +314,13 @@ class Neviweb130Client(object):
         data = {ATTR_ROOM_SETPOINT: temperature}
         self.set_device_attributes(device_id, data)
 
-    def set_backlight(self, device_id, level):
-        """ Set backlight intensity when idle, on or auto"""
-        data = {ATTR_BACKLIGHT: level,"loadWattOutput2":{"status":"off","value":0}}
+    def set_backlight(self, device_id, level, device):
+        """ Set backlight intensity when idle, on or auto """
+        """ Work differently for wifi and zigbee devices """
+        if device == "wifi":
+            data = {ATTR_BACKLIGHT_AUTO_DIM: level}
+        else:
+            data = {ATTR_BACKLIGHT: level}
         _LOGGER.debug("backlight.data = %s", data)
         self.set_device_attributes(device_id, data)
 
@@ -322,13 +330,16 @@ class Neviweb130Client(object):
         _LOGGER.debug("display.data = %s", data)
         self.set_device_attributes(device_id, data)
 
-    def set_keypad_lock(self, device_id, lock, key):
+    def set_keypad_lock(self, device_id, lock):
         """Set device keyboard locked/unlocked."""
-        if key == "off":
-            data = {ATTR_KEYPAD: lock}
-        else:
-            data = {ATTR_KEYPAD:lock,"loadWattOutput2":{"status":"off","value":0}}
+        data = {ATTR_KEYPAD: lock}
         _LOGGER.debug("lock.data = %s", data)
+        self.set_device_attributes(device_id, data)
+
+    def set_phase(self, device_id, phase):
+        """Set device phase control mode."""
+        data = {ATTR_PHASE_CONTROL: phase}
+        _LOGGER.debug("phase.data = %s", data)
         self.set_device_attributes(device_id, data)
 
     def set_timer(self, device_id, time):
@@ -355,6 +366,18 @@ class Neviweb130Client(object):
             temp = Null
         data = {ATTR_FLOOR_AIR_LIMIT:{"status":status,"value":temp}}
         _LOGGER.debug("floorairlimit.data = %s", data)
+        self.set_device_attributes(device_id, data)
+
+    def set_early_start(self, device_id, start):
+        """Set early start on/off for wifi thermostats."""
+        data = {ATTR_EARLY_START: start}
+        _LOGGER.debug("early_start.data = %s", data)
+        self.set_device_attributes(device_id, data)
+
+    def set_air_floor_mode(self, device_id, mode):
+        """switch temperature control between floor and ambiant sensor."""
+        data = {ATTR_FLOOR_MODE: mode}
+        _LOGGER.debug("floor_mode.data = %s", data)
         self.set_device_attributes(device_id, data)
 
     def set_setpoint_min(self, device_id, temp):

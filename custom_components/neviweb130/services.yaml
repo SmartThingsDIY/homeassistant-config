@@ -101,11 +101,14 @@ set_second_display:
       example: "outsideTemperature"
 
 set_backlight:
-  description: Set backlight intensity, auto = on when active (off when idle), on = always on.
+  description: Set backlight intensity, auto = on when active (off when idle), on = always on. Need to specify device type; wifi or zigbee
   fields:
     entity_id:
       description: Name(s) of neviweb130 device to set the backlight intensity.
       example: "climate.neviweb130_climate_office"
+    type:
+      description: «wifi» for wifi devices or «zigbee» for zigbee devices
+      example: "wifi"
     backlightAdaptive:
       description: «auto» or «on».
       example: "auto"
@@ -188,3 +191,33 @@ set_valve_temp_alert:
     alertLowTemp:
       description: Set to 1 = «true», send alert or to 0 = «false», do nothing.
       example: 1
+
+set_early_start:
+  description: Set thermostats early start for heating (for wifi thermostat).
+  fields:
+    entity_id:
+      description: Name of neviweb130 thermostat wifi device.
+      example: "climate.neviweb130_climate_kitchen"
+    earlyStartCfg:
+      description: Set to «on», or to «off» to start/stop early heating on thermostat.
+      example: "on"
+
+set_air_floor_mode:
+  description: Set floor thermostat control mode via Ambiant or Floor temperature sensor.
+  fields:
+    entity_id:
+      description: Name(s) of neviweb130 floor thermostat.
+      example: "climate.neviweb130_climate_kitchen"
+    airFloorMode:
+      description: Set to «airByFloor» for ambiant temperature sensor or to «floor» for floor temperature sensor.
+      example: "floor"
+
+set_phase_control:
+  description: Set dimmer light phase control mode «reverse» or «forward».
+  fields:
+    entity_id:
+      description: Name(s) of neviweb130 dimmer light.
+      example: "light.neviweb130_light_kitchen"
+    phaseControl:
+      description: Set to «reverse» or to «forward» for dimmer light phase control.
+      example: "reverse"
